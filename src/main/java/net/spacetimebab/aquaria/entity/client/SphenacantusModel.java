@@ -14,7 +14,7 @@ public class SphenacantusModel extends AnimatedGeoModel<SphenacantusEntity> {
 
     @Override
     public ResourceLocation getTextureResource(SphenacantusEntity object) {
-        return new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/wild_sphenacanthus.png");
+        return SphenacantusRenderer.LOCATION_BY_VARIANT.get(object.getVariant());
     }
 
     @Override
