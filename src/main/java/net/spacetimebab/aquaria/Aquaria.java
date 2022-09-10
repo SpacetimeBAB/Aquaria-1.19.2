@@ -13,6 +13,9 @@ import net.spacetimebab.aquaria.inits.FoodInit;
 import net.spacetimebab.aquaria.inits.ItemInit;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Aquaria.MOD_ID)
 public class Aquaria
@@ -20,6 +23,7 @@ public class Aquaria
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "aquaria";
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static final List<Runnable> CALLBACKS = new ArrayList<>();
 
     public Aquaria()
     {

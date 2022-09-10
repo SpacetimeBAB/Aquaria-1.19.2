@@ -179,7 +179,7 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
 
     @Override
     public ItemStack getBucketItemStack() {
-        return null;
+        return new ItemStack(SPHENA_BUCKET.get());
     }
 
 

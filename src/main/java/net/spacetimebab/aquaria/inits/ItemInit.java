@@ -4,6 +4,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -29,9 +30,9 @@ public class ItemInit {
     public static final RegistryObject<Item> SPHENA_SOUL = ITEMS.register("sphena_soul",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
-    public static final RegistryObject<MobBucketItem> SPHENA_BUCKET = ITEMS.register("sphena_bucket",
-            () -> new MobBucketItem( EntityInit.SPHENACANTHUS, (Supplier<? extends Fluid>) Fluids.WATER, (Supplier<? extends SoundEvent>) SoundEvents.BUCKET_EMPTY_FISH,(new Item.Properties()).stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
-
+    public static final RegistryObject<Item> SPHENA_BUCKET = ITEMS.register("sphena_bucket",
+            () -> new ItemModFishBucket(EntityInit.SPHENACANTHUS, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
     public static final RegistryObject<Item> SPHENACANTHUS_SPAWN_EGG = ITEMS.register("sphenacanthus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityInit.SPHENACANTHUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
@@ -40,9 +41,7 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.DIPTERUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
-    public ItemInit(RegistryObject<MobBucketItem> sphenaBucket) {
 
-    }
 
 
     public static void register(IEventBus eventBus) {
