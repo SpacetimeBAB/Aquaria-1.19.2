@@ -1,6 +1,7 @@
 package net.spacetimebab.aquaria.entity.custom;
 
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -17,14 +18,20 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.entity.animal.AbstractFish;
+import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
-import net.spacetimebab.aquaria.inits.ItemInit;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.Vec3;
+import net.spacetimebab.aquaria.entity.variant.DipterusVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -34,37 +41,99 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import static net.spacetimebab.aquaria.inits.ItemInit.SPHENA_BUCKET;
-
-public class SphenacantusEntity extends AbstractFish implements IAnimatable, Bucketable {
+public class DipterusEntity extends AbstractFish implements IAnimatable, Bucketable {
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
-            SynchedEntityData.defineId(SphenacantusEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(DipterusEntity.class, EntityDataSerializers.INT);
 
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public SphenacantusEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
-        super(p_30341_, p_30342_);
+    public DipterusEntity(EntityType<? extends AbstractFish> entityType, Level level) {
+        super(entityType, level);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.WALKABLE, 0.0F);
+
+    }
+    boolean searchingForLand;
+
+    public void setSearchingForLand(boolean p_32399_) {
+        this.searchingForLand = p_32399_;
+    }
+
+    protected boolean closeToNextPos() {
+        Path path = this.getNavigation().getPath();
+        if (path != null) {
+            BlockPos blockpos = path.getTarget();
+            if (blockpos != null) {
+                double d0 = this.distanceToSqr((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
+                if (d0 < 4.0D) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    static class FishSwimUpGoal extends Goal {
+        private final DipterusEntity drowned;
+        private final double speedModifier;
+        private final int seaLevel;
+        private boolean stuck;
+
+
+
+        FishSwimUpGoal(DipterusEntity drowned, double speedModifier, int seaLevel) {
+            this.drowned = drowned;
+            this.speedModifier = speedModifier;
+            this.seaLevel = seaLevel;
+        }
+
+        public boolean canUse() {
+            return !this.drowned.level.isDay() && this.drowned.isInWater() && this.drowned.getY() < (double)(this.seaLevel - 2);
+        }
+
+        public boolean canContinueToUse() {
+            return this.canUse() && !this.stuck;
+        }
+
+        public void tick() {
+            if (this.drowned.getY() < (double)(this.seaLevel - 1) && (this.drowned.getNavigation().isDone() || this.drowned.closeToNextPos())) {
+                Vec3 vec3 = DefaultRandomPos.getPosTowards(this.drowned, 4, 8, new Vec3(this.drowned.getX(), (double)(this.seaLevel - 1), this.drowned.getZ()), (double)((float)Math.PI / 2F));
+                if (vec3 == null) {
+                    this.stuck = true;
+                    return;
+                }
+
+                this.drowned.getNavigation().moveTo(vec3.x, vec3.y, vec3.z, this.speedModifier);
+            }
+
+        }
+        public void start() {
+            this.drowned.setSearchingForLand(true);
+            this.stuck = false;
+        }
+
+        public void stop() {
+            this.drowned.setSearchingForLand(false);
+        }
     }
 
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 5.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 0.9D)
-                .add( Attributes.ARMOR, 2D)
+                .add(Attributes.MAX_HEALTH, 4.0D)
+                .add(Attributes.MOVEMENT_SPEED, (double) 0.23f)
                 .add(Attributes.ATTACK_DAMAGE,5D);
     }
-
-
 
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.goalSelector.addGoal(2,new PanicGoal(this,10.0D));
+
     }
 
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
@@ -72,15 +141,6 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
     }
 
 
-    public boolean doHurtTarget(Entity p_28319_) {
-        boolean flag = p_28319_.hurt(DamageSource.thorns(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
-        if (flag) {
-            this.doEnchantDamageEffects(this, p_28319_);
-            this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
-        }
-
-        return flag;
-    }
 
     private void addParticlesAroundSelf(ParticleOptions p_28338_) {
         for(int i = 0; i < 7; ++i) {
@@ -107,11 +167,11 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (this.isInWater() && event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sphenacanthus.swim", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.dipterus.swim", true));
             return PlayState.CONTINUE;
         }
         if (!this.isInWater()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sphenacanthus.flop", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.dipterus.crawl", true));
             return PlayState.CONTINUE;
         }
 
@@ -182,9 +242,6 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
         return null;
     }
 
-
-
-
     @Override
     public SoundEvent getPickupSound() {
         return null;
@@ -210,20 +267,20 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
                                         MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
                                         @Nullable CompoundTag p_146750_) {
-        SphenacanthusVariant variant = Util.getRandom(SphenacanthusVariant.values(), this.random);
+        DipterusVariant variant = Util.getRandom(DipterusVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
-    public SphenacanthusVariant getVariant() {
-        return SphenacanthusVariant.byId(this.getTypeVariant() & 255);
+    public DipterusVariant getVariant() {
+        return DipterusVariant.byId(this.getTypeVariant() & 255);
     }
 
     private int getTypeVariant() {
         return this.entityData.get(DATA_ID_TYPE_VARIANT);
     }
 
-    private void setVariant(SphenacanthusVariant variant) {
+    private void setVariant(DipterusVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
 }

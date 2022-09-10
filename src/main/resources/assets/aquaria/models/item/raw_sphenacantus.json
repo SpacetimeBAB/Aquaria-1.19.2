@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "aquaria:item/sphena_raw"
+    "layer0": "aquaria:item/raw_sphenacantus"
   }
 }

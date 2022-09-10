@@ -4,10 +4,12 @@
   "item.aquaria.sphena_soul": "Sphenacanthus Soul",
   "item.aquaria.sphena_bucket": "Sphenacanthus Bucket",
   "item.aquaria.sphenacanthus_spawn_egg": "Sphenacanthus Spawn Egg",
+  "item.aquaria.dipterus_spawn_egg": "Dipterus Spawn Egg",
 
 
 
-  "entity.aquaria.sphenacantus": "Sphenacanthus"
+  "entity.aquaria.sphenacantus": "Sphenacanthus",
+  "entity.aquaria.dipterus": "Dipterus"
 
 
 }

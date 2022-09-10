@@ -8,6 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.Aquaria;
+import net.spacetimebab.aquaria.entity.client.DipterusRenderer;
+import net.spacetimebab.aquaria.entity.custom.DipterusEntity;
 import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
 
 public class EntityInit {
@@ -22,6 +24,11 @@ public class EntityInit {
                     () -> EntityType.Builder.of(SphenacantusEntity::new, MobCategory.WATER_CREATURE)
                             .sized(1f, 1f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "sphenacantus").toString()));
+    public static final RegistryObject<EntityType<DipterusEntity>> DIPTERUS =
+            ENTITY_TYPES.register("dipterus",
+                    () -> EntityType.Builder.of(DipterusEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(1f, 1f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "dipterus").toString()));
 
 
 

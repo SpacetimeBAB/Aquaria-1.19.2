@@ -1,0 +1,208 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dipterus.new": {
+			"loop": true,
+			"bones": {
+				"tail": {
+					"rotation": {
+						"vector": [0, 32.5, 0]
+					}
+				},
+				"tail2": {
+					"rotation": {
+						"vector": [0, 35, 0]
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [0, -25, 0]
+					}
+				},
+				"dorsal1": {
+					"rotation": {
+						"vector": [-32.49999, 27.5, 0.00003]
+					}
+				},
+				"dorsal2": {
+					"rotation": {
+						"vector": [-45, 0, 0]
+					}
+				},
+				"peccore": {
+					"rotation": {
+						"vector": [55, 0, 0]
+					}
+				},
+				"pecright": {
+					"rotation": {
+						"vector": [0, 0, -62.5]
+					}
+				},
+				"pecleft": {
+					"rotation": {
+						"vector": [0, 0, 62.5]
+					}
+				},
+				"pelviccore": {
+					"rotation": {
+						"vector": [60, 0, 0]
+					}
+				},
+				"pelvicleft": {
+					"rotation": {
+						"vector": [0, 0, 72.5]
+					}
+				},
+				"pelvicright": {
+					"rotation": {
+						"vector": [0, 0, -72.5]
+					}
+				},
+				"anal": {
+					"rotation": {
+						"vector": [57.5, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.dipterus.swim": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"bodycore": {
+					"rotation": {
+						"vector": [0, "Math.cos((query.anim_time*180))*10", 0]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [0, "Math.cos((query.anim_time-0.4)*180)*25", 0]
+					}
+				},
+				"tail2": {
+					"rotation": {
+						"vector": [0, "Math.cos((query.anim_time-0.8)*180)*30", 0]
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [0, "Math.cos((query.anim_time-0.2)*180)*-5", 0]
+					}
+				},
+				"dorsal1": {
+					"rotation": {
+						"vector": [-25, 0, "Math.cos((query.anim_time-0.4)*180)*20"]
+					}
+				},
+				"dorsal2": {
+					"rotation": {
+						"vector": [-35, 0, "Math.cos((query.anim_time-0.4)*180)*20"]
+					}
+				},
+				"peccore": {
+					"rotation": {
+						"vector": [57.5, 0, 0]
+					}
+				},
+				"pecright": {
+					"rotation": {
+						"vector": [0, 0, "-60+Math.cos((query.anim_time-0.4)*180)*20"]
+					}
+				},
+				"pecleft": {
+					"rotation": {
+						"vector": [0, 0, "60+Math.cos((query.anim_time-0.4)*180)*20"]
+					}
+				},
+				"pelviccore": {
+					"rotation": {
+						"vector": [60, 0, 0]
+					}
+				},
+				"pelvicleft": {
+					"rotation": {
+						"vector": [0, 0, "70+Math.cos((query.anim_time-0.4)*180)*-20"]
+					}
+				},
+				"pelvicright": {
+					"rotation": {
+						"vector": [0, 0, "-70+Math.cos((query.anim_time-0.4)*180)*-20"]
+					}
+				},
+				"anal": {
+					"rotation": {
+						"vector": [50, 0, "0+Math.cos((query.anim_time-0.4)*180)*-20"]
+					}
+				}
+			}
+		},
+		"animation.dipterus.crawl": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"bodycore": {
+					"rotation": {
+						"vector": [0, "Math.cos((query.anim_time)*360)*10", "Math.cos((query.anim_time+0.3)*360)*20"]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [-12.5, "Math.cos((query.anim_time-0.4)*360)*-20", 0]
+					}
+				},
+				"tail2": {
+					"rotation": {
+						"vector": [-12.5, "Math.cos((query.anim_time-0.6)*360)*-20", 0]
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [0, "Math.cos((query.anim_time+0.3)*360)*30", 0]
+					}
+				},
+				"dorsal1": {
+					"rotation": {
+						"vector": ["-45+Math.cos((query.anim_time-0.6)*360)*-20", 0, 70]
+					}
+				},
+				"dorsal2": {
+					"rotation": {
+						"vector": ["-45+Math.cos((query.anim_time+0.3)*360)*-20", 0, "-60+Math.cos((query.anim_time+0.3)*360)*-20"]
+					}
+				},
+				"pecright": {
+					"rotation": {
+						"vector": [0, "10+Math.sin((query.anim_time+0.4)*360)*-50", "-10+Math.cos((query.anim_time+0.2)*360)*-20"]
+					}
+				},
+				"pecleft": {
+					"rotation": {
+						"vector": [0, "-10+Math.sin((query.anim_time+0.4)*360)*-50", "10+Math.cos((query.anim_time+0.2)*360)*20"]
+					}
+				},
+				"pelvicleft": {
+					"rotation": {
+						"vector": [-16.66185, -63.17028, 28.01735]
+					}
+				},
+				"pelvicright": {
+					"rotation": {
+						"vector": [-12.6353, 66.61421, -20.30902]
+					}
+				},
+				"anal": {
+					"rotation": {
+						"vector": [60, 0, 0]
+					}
+				},
+				"pelviccore": {
+					"rotation": {
+						"vector": [0, "Math.cos((query.anim_time)*360)*30", "Math.cos((query.anim_time)*360)*-10"]
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

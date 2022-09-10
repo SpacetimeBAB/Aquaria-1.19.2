@@ -4,6 +4,7 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.spacetimebab.aquaria.Aquaria;
+import net.spacetimebab.aquaria.entity.custom.DipterusEntity;
 import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
 import net.spacetimebab.aquaria.inits.EntityInit;
 
@@ -12,6 +13,7 @@ public class CommonModEvents {
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
         event.put(EntityInit.SPHENACANTHUS.get(), SphenacantusEntity.attributes().build());
+        event.put(EntityInit.DIPTERUS.get(), DipterusEntity.attributes().build());
 
 
     }

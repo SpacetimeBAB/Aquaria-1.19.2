@@ -42,7 +42,8 @@ authors="Gec'd, Spacetime BAB, and Kamadw" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-
+[Insert mod name here] is a small fish/aquatic mob mod that adds water - dwelling animals from across prehistory to your aquarium. Resurrect long - dead animals from soul - rich soil and a catalyst, and breed said animals for rare morphs that cannot be found otherwise.
+This mod requires geckolib in order to function correctly, please report bugs to[insert curseforge link here].
 
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
