@@ -10,6 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.Aquaria;
 import net.spacetimebab.aquaria.entity.client.DipterusRenderer;
 import net.spacetimebab.aquaria.entity.custom.DipterusEntity;
+import net.spacetimebab.aquaria.entity.custom.GoologongiaEntity;
 import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
 
 public class EntityInit {
@@ -29,6 +30,11 @@ public class EntityInit {
                     () -> EntityType.Builder.of(DipterusEntity::new, MobCategory.WATER_CREATURE)
                             .sized(1f, 1f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "dipterus").toString()));
+    public static final RegistryObject<EntityType<GoologongiaEntity>> GOOLOGONGIA =
+            ENTITY_TYPES.register("goologongia",
+                    () -> EntityType.Builder.of(GoologongiaEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(1f, 1f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "goologongia").toString()));
 
 
 

@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.spacetimebab.aquaria.Aquaria;
 import net.spacetimebab.aquaria.entity.client.DipterusRenderer;
+import net.spacetimebab.aquaria.entity.client.GoologongiaRenderer;
 import net.spacetimebab.aquaria.entity.client.SphenacantusRenderer;
 import net.spacetimebab.aquaria.inits.EntityInit;
 
@@ -17,5 +18,6 @@ public class ClientModEvents {
     public static void clientSetup(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EntityInit.SPHENACANTHUS.get(), SphenacantusRenderer::new);
         event.registerEntityRenderer(EntityInit.DIPTERUS.get(), DipterusRenderer::new);
+        event.registerEntityRenderer(EntityInit.GOOLOGONGIA.get(), GoologongiaRenderer::new);
     }
 }
