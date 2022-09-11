@@ -19,6 +19,7 @@ import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -52,13 +53,16 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 5.0D)
+                .add(Attributes.MAX_HEALTH, 10.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double) 0.9D)
                 .add( Attributes.ARMOR, 2D)
                 .add(Attributes.ATTACK_DAMAGE,5D);
     }
 
-
+    @Override
+    public boolean canBeLeashed(Player p_30346_) {
+        return super.canBeLeashed(p_30346_);
+    }
 
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));

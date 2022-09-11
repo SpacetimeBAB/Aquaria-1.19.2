@@ -148,6 +148,17 @@ public class DipterusEntity extends AbstractFish implements IAnimatable, Bucketa
         return 5000;
     }
 
+    @Override
+    public void aiStep() {
+        if (!this.isInWater() && this.onGround && this.verticalCollision) {
+            this.onGround = false;
+            this.hasImpulse = true;
+            this.playSound(this.getFlopSound(), this.getSoundVolume(), this.getVoicePitch());
+        }
+
+        super.aiStep();
+    }
+
 
 
 

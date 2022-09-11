@@ -34,7 +34,7 @@ public class DipterusRenderer extends GeoEntityRenderer<DipterusEntity> {
 
     public DipterusRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new DipterusModel());
-        this.shadowRadius = 1f;
+        this.shadowRadius = 0.5f;
     }
 
     @Override

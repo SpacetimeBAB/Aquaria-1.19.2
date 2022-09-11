@@ -28,12 +28,12 @@ public class EntityInit {
     public static final RegistryObject<EntityType<DipterusEntity>> DIPTERUS =
             ENTITY_TYPES.register("dipterus",
                     () -> EntityType.Builder.of(DipterusEntity::new, MobCategory.WATER_CREATURE)
-                            .sized(1f, 1f)
+                            .sized(0.75f, 0.75f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "dipterus").toString()));
     public static final RegistryObject<EntityType<GoologongiaEntity>> GOOLOGONGIA =
             ENTITY_TYPES.register("goologongia",
                     () -> EntityType.Builder.of(GoologongiaEntity::new, MobCategory.WATER_CREATURE)
-                            .sized(1f, 1f)
+                            .sized(0.75f, 0.5f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "goologongia").toString()));
 
 

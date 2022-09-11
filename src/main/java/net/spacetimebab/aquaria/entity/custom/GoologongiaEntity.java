@@ -22,7 +22,9 @@ import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.spacetimebab.aquaria.entity.ai.GetNearSeagrass;
 import net.spacetimebab.aquaria.entity.variant.GoologongiaVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -64,7 +66,8 @@ public class GoologongiaEntity extends AbstractFish implements IAnimatable, Buck
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
-    }
+        this.goalSelector.addGoal(4,new GetNearSeagrass(Blocks.SEAGRASS, (PathfinderMob) this, 1.0D, (int) 1.0));
+        }
 
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
         return new AmphibiousPathNavigation(this, waterBoundPathNavigation);
@@ -79,6 +82,16 @@ public class GoologongiaEntity extends AbstractFish implements IAnimatable, Buck
         }
 
         return flag;
+    }
+    @Override
+    public void aiStep() {
+        if (!this.isInWater() && this.onGround && this.verticalCollision) {
+            this.onGround = false;
+            this.hasImpulse = true;
+            this.playSound(this.getFlopSound(), this.getSoundVolume(), this.getVoicePitch());
+        }
+
+        super.aiStep();
     }
 
     private void addParticlesAroundSelf(ParticleOptions p_28338_) {
