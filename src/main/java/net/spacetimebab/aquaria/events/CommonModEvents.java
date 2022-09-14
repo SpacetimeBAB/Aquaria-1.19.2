@@ -16,6 +16,7 @@ public class CommonModEvents {
         event.put(EntityInit.GOOLOGONGIA.get(), GoologongiaEntity.attributes().build());
         event.put(EntityInit.LAMIASPIS.get(), LamiaspisEntity.attributes().build());
         event.put(EntityInit.DIPLACANTHUS.get(), DiplacanthusEntity.attributes().build());
+        event.put(EntityInit.CAMPBELLODUS.get(), CampbellodusEntity.attributes().build());
 
 
     }

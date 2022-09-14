@@ -46,6 +46,12 @@ public class EntityInit {
                             .sized(0.5f, 0.5f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "diplacanthus").toString()));
 
+    public static final RegistryObject<EntityType<CampbellodusEntity>> CAMPBELLODUS =
+            ENTITY_TYPES.register("campbellodus",
+                    () -> EntityType.Builder.of(CampbellodusEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(0.25f, 0.25f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "campbellodus").toString()));
+
 
 
     public static void register(IEventBus eventBus) {

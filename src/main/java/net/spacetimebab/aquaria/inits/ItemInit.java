@@ -76,6 +76,10 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.DIPLACANTHUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
+    public static final RegistryObject<Item> CAMPBELLODUS_SPAWN_EGG = ITEMS.register("campbellodus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityInit.CAMPBELLODUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
 
 
 

@@ -15,6 +15,7 @@
   "item.aquaria.cooked_goolagongia": "Cooked Goolagongia",
   "item.aquaria.goolagongia_bucket": "Goolagongia Bucket",
   "item.aquaria.diplacanthus_spawn_egg": "Diplacanthus Spawn Egg",
+  "item.aquaria.campbellodus_spawn_egg": "Campbellodus Spawn Egg",
 
 
 
@@ -22,7 +23,8 @@
   "entity.aquaria.dipterus": "Dipterus",
   "entity.aquaria.goolagongia": "Goolagongia",
   "entity.aquaria.lamiaspis": "Lamiaspis",
-  "entity.aquaria.diplacanthus": "Diplacanthus"
+  "entity.aquaria.diplacanthus": "Diplacanthus",
+  "entity.aquaria.campbellodus": "Campbellodus"
 
 
 }

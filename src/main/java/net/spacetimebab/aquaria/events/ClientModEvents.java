@@ -19,5 +19,6 @@ public class ClientModEvents {
         event.registerEntityRenderer(EntityInit.GOOLOGONGIA.get(), GoologongiaRenderer::new);
         event.registerEntityRenderer(EntityInit.LAMIASPIS.get(), LamiaspisRenderer::new);
         event.registerEntityRenderer(EntityInit.DIPLACANTHUS.get(), DiplacanthusRenderer::new);
+        event.registerEntityRenderer(EntityInit.CAMPBELLODUS.get(), CampbellodusRenderer::new);
     }
 }
