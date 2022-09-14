@@ -1,6 +1,6 @@
 {
-  "item.aquaria.raw_sphethacantus": "Raw Sphenacanthus",
-  "item.aquaria.cooked_sphethacantus": "Cooked Sphenacanthus",
+  "item.aquaria.raw_sphenacantus": "Raw Sphenacanthus",
+  "item.aquaria.cooked_sphenacantus": "Cooked Sphenacanthus",
   "item.aquaria.sphena_soul": "Sphenacanthus Soul",
   "item.aquaria.sphena_bucket": "Sphenacanthus Bucket",
   "item.aquaria.sphenacanthus_spawn_egg": "Sphenacanthus Spawn Egg",
@@ -9,17 +9,20 @@
   "item.aquaria.lamiaspis_spawn_egg": "Lamiaspis Spawn Egg",
   "item.aquaria.raw_phlebolepis": "Raw Phlebolepis",
   "item.aquaria.cooked_phlebolepis": "Cooked Phlebolepis",
-  "item.aquaria.raw_doli": "Raw Dolichorhynchops Flesh",
-  "item.aquaria.cooked_doli": "Cooked Dolichorhynchops Flesh",
+  "item.aquaria.dolly_flesh": "Raw Dolichorhynchops Flesh",
+  "item.aquaria.dolly_flesh_cooked": "Cooked Dolichorhynchops Flesh",
   "item.aquaria.raw_goolagongia": "Raw Goolagongia",
   "item.aquaria.cooked_goolagongia": "Cooked Goolagongia",
+  "item.aquaria.goolagongia_bucket": "Goolagongia Bucket",
+  "item.aquaria.diplacanthus_spawn_egg": "Diplacanthus Spawn Egg",
 
 
 
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",
   "entity.aquaria.goolagongia": "Goolagongia",
-  "entity.aquaria.lamiaspis": "Lamiaspis"
+  "entity.aquaria.lamiaspis": "Lamiaspis",
+  "entity.aquaria.diplacanthus": "Diplacanthus"
 
 
 }

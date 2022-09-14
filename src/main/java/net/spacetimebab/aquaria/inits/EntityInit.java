@@ -9,10 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.Aquaria;
 import net.spacetimebab.aquaria.entity.client.DipterusRenderer;
-import net.spacetimebab.aquaria.entity.custom.DipterusEntity;
-import net.spacetimebab.aquaria.entity.custom.GoologongiaEntity;
-import net.spacetimebab.aquaria.entity.custom.LamiaspisEntity;
-import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
+import net.spacetimebab.aquaria.entity.custom.*;
 
 public class EntityInit {
 
@@ -42,6 +39,12 @@ public class EntityInit {
                     () -> EntityType.Builder.of(LamiaspisEntity::new, MobCategory.WATER_CREATURE)
                             .sized(0.25f, 0.25f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "lamiaspis").toString()));
+
+    public static final RegistryObject<EntityType<DiplacanthusEntity>> DIPLACANTHUS =
+            ENTITY_TYPES.register("diplacanthus",
+                    () -> EntityType.Builder.of(DiplacanthusEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(0.5f, 0.5f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "diplacanthus").toString()));
 
 
 

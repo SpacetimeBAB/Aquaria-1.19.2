@@ -35,6 +35,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import static net.spacetimebab.aquaria.inits.ItemInit.GOOLAGONGIA_BUCKET;
 import static net.spacetimebab.aquaria.inits.ItemInit.SPHENA_BUCKET;
 
 public class GoologongiaEntity extends AbstractFish implements IAnimatable, Bucketable {
@@ -191,7 +192,7 @@ public class GoologongiaEntity extends AbstractFish implements IAnimatable, Buck
 
     @Override
     public ItemStack getBucketItemStack() {
-        return new ItemStack(SPHENA_BUCKET.get());
+        return new ItemStack(GOOLAGONGIA_BUCKET.get());
     }
 
 
@@ -199,7 +200,7 @@ public class GoologongiaEntity extends AbstractFish implements IAnimatable, Buck
 
     @Override
     public SoundEvent getPickupSound() {
-        return null;
+        return SoundEvents.BUCKET_FILL_FISH;
     }
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {

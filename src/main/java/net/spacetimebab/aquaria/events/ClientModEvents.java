@@ -7,10 +7,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.spacetimebab.aquaria.Aquaria;
-import net.spacetimebab.aquaria.entity.client.DipterusRenderer;
-import net.spacetimebab.aquaria.entity.client.GoologongiaRenderer;
-import net.spacetimebab.aquaria.entity.client.LamiaspisRenderer;
-import net.spacetimebab.aquaria.entity.client.SphenacantusRenderer;
+import net.spacetimebab.aquaria.entity.client.*;
 import net.spacetimebab.aquaria.inits.EntityInit;
 
 @Mod.EventBusSubscriber(modid = Aquaria.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -21,5 +18,6 @@ public class ClientModEvents {
         event.registerEntityRenderer(EntityInit.DIPTERUS.get(), DipterusRenderer::new);
         event.registerEntityRenderer(EntityInit.GOOLOGONGIA.get(), GoologongiaRenderer::new);
         event.registerEntityRenderer(EntityInit.LAMIASPIS.get(), LamiaspisRenderer::new);
+        event.registerEntityRenderer(EntityInit.DIPLACANTHUS.get(), DiplacanthusRenderer::new);
     }
 }

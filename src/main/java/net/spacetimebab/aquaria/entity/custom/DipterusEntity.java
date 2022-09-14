@@ -145,7 +145,7 @@ public class DipterusEntity extends AbstractFish implements IAnimatable, Bucketa
     }
 
     public int getMaxAirSupply() {
-        return 5000;
+        return 500000;
     }
 
     @Override

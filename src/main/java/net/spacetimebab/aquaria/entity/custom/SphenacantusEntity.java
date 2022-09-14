@@ -191,7 +191,7 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
 
     @Override
     public SoundEvent getPickupSound() {
-        return null;
+        return SoundEvents.BUCKET_FILL_FISH;
     }
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {

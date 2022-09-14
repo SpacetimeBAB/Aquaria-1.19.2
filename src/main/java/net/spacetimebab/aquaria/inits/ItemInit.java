@@ -21,10 +21,10 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Aquaria.MOD_ID);
 
-    public static final RegistryObject<Item> RAW_SPHETHACANTHUS = ITEMS.register("raw_sphethacantus",
+    public static final RegistryObject<Item> RAW_SPHETHACANTHUS = ITEMS.register("raw_sphenacantus",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.RAW_SPHETHACANTHUS)));
 
-    public static final RegistryObject<Item> COOKED_SPHETHACANTHUS = ITEMS.register("cooked_sphethacantus",
+    public static final RegistryObject<Item> COOKED_SPHETHACANTHUS = ITEMS.register("cooked_sphenacantus",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.COOKED_SPHETHACANTHUS)));
 
     public static final RegistryObject<Item> SPHENA_SOUL = ITEMS.register("sphena_soul",
@@ -33,6 +33,7 @@ public class ItemInit {
     public static final RegistryObject<Item> SPHENA_BUCKET = ITEMS.register("sphena_bucket",
             () -> new ItemModFishBucket(EntityInit.SPHENACANTHUS, () -> Fluids.WATER, Items.BUCKET, false,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+
     public static final RegistryObject<Item> SPHENACANTHUS_SPAWN_EGG = ITEMS.register("sphenacanthus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityInit.SPHENACANTHUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
@@ -55,10 +56,10 @@ public class ItemInit {
     public static final RegistryObject<Item> COOKED_PHLEBOLEPIS = ITEMS.register("cooked_phlebolepis",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.COOKED_PHLEBOLEPIS)));
 
-    public static final RegistryObject<Item> RAW_DOLI = ITEMS.register("raw_doli",
+    public static final RegistryObject<Item> DOLLY_FLESH = ITEMS.register("dolly_flesh",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.RAW_DOLI)));
 
-    public static final RegistryObject<Item> COOKED_DOLI = ITEMS.register("cooked_doli",
+    public static final RegistryObject<Item> DOLLY_FLESH_COOKED = ITEMS.register("dolly_flesh_cooked",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.COOKED_DOLI)));
 
     public static final RegistryObject<Item> RAW_GOOLAGONGIA = ITEMS.register("raw_goolagongia",
@@ -66,6 +67,14 @@ public class ItemInit {
 
     public static final RegistryObject<Item> COOKED_GOOLAGONGIA = ITEMS.register("cooked_goolagongia",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.COOKED_GOOLAGONGIA)));
+
+    public static final RegistryObject<Item> GOOLAGONGIA_BUCKET = ITEMS.register("goolagongia_bucket",
+            () -> new ItemModFishBucket(EntityInit.GOOLOGONGIA, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+
+    public static final RegistryObject<Item> DIPLACANTHUS_SPAWN_EGG = ITEMS.register("diplacanthus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityInit.DIPLACANTHUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
 
 
