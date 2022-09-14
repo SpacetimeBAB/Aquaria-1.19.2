@@ -11,6 +11,7 @@ import net.spacetimebab.aquaria.Aquaria;
 import net.spacetimebab.aquaria.entity.client.DipterusRenderer;
 import net.spacetimebab.aquaria.entity.custom.DipterusEntity;
 import net.spacetimebab.aquaria.entity.custom.GoologongiaEntity;
+import net.spacetimebab.aquaria.entity.custom.LamiaspisEntity;
 import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
 
 public class EntityInit {
@@ -35,6 +36,12 @@ public class EntityInit {
                     () -> EntityType.Builder.of(GoologongiaEntity::new, MobCategory.WATER_CREATURE)
                             .sized(0.75f, 0.5f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "goologongia").toString()));
+
+    public static final RegistryObject<EntityType<LamiaspisEntity>> LAMIASPIS =
+            ENTITY_TYPES.register("lamiaspis",
+                    () -> EntityType.Builder.of(LamiaspisEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(0.25f, 0.25f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "lamiaspis").toString()));
 
 
 

@@ -25,6 +25,10 @@ public class GoologongiaRenderer extends GeoEntityRenderer<GoologongiaEntity> {
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/goologongia/wild_googoo.png"));
                 p_114874_.put(GoologongiaVariant.ALBINO,
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/goologongia/albino_googoo.png"));
+                p_114874_.put(GoologongiaVariant.PLATINUM,
+                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/goologongia/platinum_googoo.png"));
+                p_114874_.put(GoologongiaVariant.GOLDDUST,
+                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/goologongia/googoo_gold_dust.png"));
 
             });
 

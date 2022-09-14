@@ -6,12 +6,20 @@
   "item.aquaria.sphenacanthus_spawn_egg": "Sphenacanthus Spawn Egg",
   "item.aquaria.dipterus_spawn_egg": "Dipterus Spawn Egg",
   "item.aquaria.goolagongia_spawn_egg": "Goolagongia Spawn Egg",
+  "item.aquaria.lamiaspis_spawn_egg": "Lamiaspis Spawn Egg",
+  "item.aquaria.raw_phlebolepis": "Raw Phlebolepis",
+  "item.aquaria.cooked_phlebolepis": "Cooked Phlebolepis",
+  "item.aquaria.raw_doli": "Raw Dolichorhynchops Flesh",
+  "item.aquaria.cooked_doli": "Cooked Dolichorhynchops Flesh",
+  "item.aquaria.raw_goolagongia": "Raw Goolagongia",
+  "item.aquaria.cooked_goolagongia": "Cooked Goolagongia",
 
 
 
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",
-  "entity.aquaria.goolagongia": "Goolagongia"
+  "entity.aquaria.goolagongia": "Goolagongia",
+  "entity.aquaria.lamiaspis": "Lamiaspis"
 
 
 }

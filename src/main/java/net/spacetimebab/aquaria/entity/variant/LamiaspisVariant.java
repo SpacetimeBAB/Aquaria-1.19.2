@@ -3,19 +3,19 @@ package net.spacetimebab.aquaria.entity.variant;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public enum GoologongiaVariant {
+public enum LamiaspisVariant {
     WILD(0),
     ALBINO(1),
-    GOLDDUST(2),
+    STEELHEAD(2),
     PLATINUM(3);
 
 
 
-    private static final GoologongiaVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.comparingInt(GoologongiaVariant::getId)).toArray(GoologongiaVariant[]::new);
+    private static final LamiaspisVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.comparingInt(LamiaspisVariant::getId)).toArray(LamiaspisVariant[]::new);
 
     private final int id;
 
-    GoologongiaVariant(int id){
+    LamiaspisVariant(int id){
         this.id = id;
     }
 
@@ -23,7 +23,7 @@ public enum GoologongiaVariant {
         return this.id;
     }
 
-    public static GoologongiaVariant byId(int id){
+    public static LamiaspisVariant byId(int id){
         return BY_ID[id % BY_ID.length];
     }
 }

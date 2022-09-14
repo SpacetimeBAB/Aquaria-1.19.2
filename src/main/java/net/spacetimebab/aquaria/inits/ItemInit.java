@@ -45,6 +45,28 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.GOOLOGONGIA, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
+    public static final RegistryObject<Item> LAMIASPIS_SPAWN_EGG = ITEMS.register("lamiaspis_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityInit.LAMIASPIS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
+    public static final RegistryObject<Item> RAW_PHLEBOLEPIS = ITEMS.register("raw_phlebolepis",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.RAW_PHLEBOLEPIS)));
+
+    public static final RegistryObject<Item> COOKED_PHLEBOLEPIS = ITEMS.register("cooked_phlebolepis",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.COOKED_PHLEBOLEPIS)));
+
+    public static final RegistryObject<Item> RAW_DOLI = ITEMS.register("raw_doli",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.RAW_DOLI)));
+
+    public static final RegistryObject<Item> COOKED_DOLI = ITEMS.register("cooked_doli",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.COOKED_DOLI)));
+
+    public static final RegistryObject<Item> RAW_GOOLAGONGIA = ITEMS.register("raw_goolagongia",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.RAW_GOOLAGONGIA)));
+
+    public static final RegistryObject<Item> COOKED_GOOLAGONGIA = ITEMS.register("cooked_goolagongia",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC).food(FoodInit.COOKED_GOOLAGONGIA)));
+
 
 
 
