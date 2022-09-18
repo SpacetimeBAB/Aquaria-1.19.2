@@ -16,8 +16,18 @@
   "item.aquaria.goolagongia_bucket": "Goolagongia Bucket",
   "item.aquaria.diplacanthus_spawn_egg": "Diplacanthus Spawn Egg",
   "item.aquaria.campbellodus_spawn_egg": "Campbellodus Spawn Egg",
-
-
+  
+  
+  "item.aquaria.sphena_crystal": "Sphenacanthus Soul Crystal",
+  "item.aquaria.googoo_crystal": "Gooloogongia Soul Crystal",
+  "item.aquaria.ornithoprion_crystal": "Ornithoprion Soul Crystal",
+  "item.aquaria.dolly_crystal": "Dolichorhynchops Soul Crystal",
+  "item.aquaria.diplacanthus_crystal": "Diplacanthus Soul Crystal",
+  "item.aquaria.dipterus_crystal": "Dipterus Soul Crystal",
+  "item.aquaria.campbellodus_crystal": "Campbellodus Soul Crystal", 
+  "item.aquaria.lamiaspis_crystal": "Lamiaspis Soul Crystal",
+  "item.aquaria.Bungartius_crystal": "Bungartius Soul Crystal",
+  "item.aquaria.phlebolepis_crystal": "phlebolepis Soul Crystal",
 
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",
