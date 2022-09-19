@@ -8,6 +8,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -17,6 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.Aquaria;
+import net.spacetimebab.aquaria.inits.wpcustom.SoulBladeItem;
 
 import java.util.function.Supplier;
 
@@ -162,15 +164,17 @@ public class ItemInit {
     //weapons and ammo(imma figure out magic damage tomorrow)
     
     public static final RegistryObject<SwordItem> SOULBLADE = ITEMS.register("soulblade",
-            () -> new SwordItem(Tiers.SOUL, 2, 2F, new SwordItem.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+            () -> new SoulBladeItem(Tiers.SOUL, 2, 2F, new SoulBladeItem.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     public static final RegistryObject<Item> SOULBOLT = ITEMS.register("soulbolt",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     
     
+    
+    //bab pls help
     public static class Tiers { 	
-    	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of(ItemInit.SOUL_SHARD.get().onLeftClickEntity(null, null, null)));
+    	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of(ItemInit.SOUL_SHARD.get()));
     }
     
     
