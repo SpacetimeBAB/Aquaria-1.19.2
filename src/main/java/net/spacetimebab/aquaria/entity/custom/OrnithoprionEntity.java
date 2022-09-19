@@ -17,6 +17,8 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
@@ -26,8 +28,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.spacetimebab.aquaria.entity.ai.HungriGetFudGoal;
 import net.spacetimebab.aquaria.entity.variant.OrnithoprionVariant;
-import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
-import net.spacetimebab.aquaria.inits.ItemInit;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -37,9 +37,9 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import static net.spacetimebab.aquaria.inits.ItemInit.SPHENA_BUCKET;
-
 public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Bucketable {
+
+
 
 
 
@@ -79,10 +79,18 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
         this.goalSelector.addGoal(3,new HungriGetFudGoal(this, LivingEntity.class,false));
     }
 
+
+
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
-        return new AmphibiousPathNavigation(this, waterBoundPathNavigation);
+        return new WaterBoundPathNavigation(this, waterBoundPathNavigation);
     }
 
+
+    public boolean attackable(LivingEntity pTarget) {
+        if (!(pTarget instanceof OrnithoprionEntity))
+        return super.attackable();
+        return true;
+    }
 
     public boolean doHurtTarget(Entity p_28319_) {
         boolean flag = p_28319_.hurt(DamageSource.mobAttack(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
@@ -107,6 +115,9 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
     public boolean canBreatheUnderwater() {
         return true;
     }
+
+
+
 
 
 
@@ -243,6 +254,7 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
     private void setVariant(OrnithoprionVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
+
 
 
 }

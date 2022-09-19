@@ -94,7 +94,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ORNITHOPRION_RAW = ITEMS.register("ornithoprion_raw",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.ORNITHOPRION_RAW)));
     
-    public static final RegistryObject<Item> DIPLACANTHUS_COOKED = ITEMS.register("diplacanthus_COOKED",
+    public static final RegistryObject<Item> DIPLACANTHUS_COOKED = ITEMS.register("diplacanthus_cooked",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.DIPLACANTHUS_COOKED)));
     
     public static final RegistryObject<Item> DIPLACANTHUS_RAW = ITEMS.register("diplacanthus_raw",
@@ -134,7 +134,7 @@ public class ItemInit {
     public static final RegistryObject<Item> CAMPBELLODUS_CRYSTAL = ITEMS.register("campbellodus_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
-    public static final RegistryObject<Item> LAMIASPIS_CRYSTAL = ITEMS.register("dipterus_crystal",
+    public static final RegistryObject<Item> LAMIASPIS_CRYSTAL = ITEMS.register("lamiaspis_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<Item> BUNGARTIUS_CRYSTAL = ITEMS.register("bungartius_crystal",
@@ -165,10 +165,11 @@ public class ItemInit {
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     //weapons and ammo(imma figure out magic damage tomorrow)
-    
+
     public static final RegistryObject<SwordItem> SOULBLADE = ITEMS.register("soulblade",
             () -> new SwordItem(Tiers.SOUL, 2, 2F, new SwordItem.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
+
     public static final RegistryObject<Item> SOULBOLT = ITEMS.register("soulbolt",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
