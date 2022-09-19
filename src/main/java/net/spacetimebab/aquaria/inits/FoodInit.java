@@ -18,4 +18,15 @@ public class FoodInit extends Foods {
     public static final FoodProperties RAW_GOOLAGONGIA = (new FoodProperties.Builder()).nutrition(6).saturationMod(2F).meat().build();
     public static final FoodProperties COOKED_GOOLAGONGIA = (new FoodProperties.Builder()).nutrition(6).saturationMod(6F).meat().build();
 
+    public static final FoodProperties DIPTERUS_RAW = (new FoodProperties.Builder()).nutrition(2).saturationMod(1F).meat().build();
+    public static final FoodProperties DIPTERUS_COOKED = (new FoodProperties.Builder()).nutrition(4).saturationMod(3F).meat().build();
+    
+    public static final FoodProperties ORNITHOPRION_RAW = (new FoodProperties.Builder()).nutrition(3).saturationMod(1F).meat().build();
+    public static final FoodProperties ORNITHOPRION_COOKED = (new FoodProperties.Builder()).nutrition(8).saturationMod(4F).meat().build();
+    
+    public static final FoodProperties DIPLACANTHUS_RAW = (new FoodProperties.Builder()).nutrition(2).saturationMod(1F).meat().effect(new MobEffectInstance(MobEffects.HARM, 600, 0), 0.5F).fast().build();
+    public static final FoodProperties DIPLACANTHUS_COOKED = (new FoodProperties.Builder()).nutrition(8).saturationMod(4F).meat().build();
+
+    public static final FoodProperties LAMIASPIS_RAW = (new FoodProperties.Builder()).nutrition(2).saturationMod(1F).meat().build();
+    public static final FoodProperties LAMIASPIS_COOKED = (new FoodProperties.Builder()).nutrition(4).saturationMod(2F).meat().build();
 }

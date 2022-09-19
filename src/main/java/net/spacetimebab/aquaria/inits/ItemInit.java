@@ -6,9 +6,12 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.common.ForgeTier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -77,6 +80,31 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.CAMPBELLODUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    //food
+    public static final RegistryObject<Item> DIPTERUS_COOKED = ITEMS.register("dipterus_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.DIPTERUS_COOKED)));
+    
+    public static final RegistryObject<Item> DIPTERUS_RAW = ITEMS.register("dipterus_raw",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.DIPTERUS_RAW)));
+    
+    public static final RegistryObject<Item> ORNITHOPRION_COOKED = ITEMS.register("ornithoprion_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.ORNITHOPRION_COOKED)));
+    
+    public static final RegistryObject<Item> ORNITHOPRION_RAW = ITEMS.register("ornithoprion_raw",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.ORNITHOPRION_RAW)));
+    
+    public static final RegistryObject<Item> DIPLACANTHUS_COOKED = ITEMS.register("diplacanthus_COOKED",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.DIPLACANTHUS_COOKED)));
+    
+    public static final RegistryObject<Item> DIPLACANTHUS_RAW = ITEMS.register("diplacanthus_raw",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.DIPLACANTHUS_RAW)));
+    
+    public static final RegistryObject<Item> LAMIASPIS_COOKED = ITEMS.register("lamiaspis_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.LAMIASPIS_COOKED)));
+    
+    public static final RegistryObject<Item> LAMIASPIS_RAW = ITEMS.register("lamiaspis_raw",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.LAMIASPIS_RAW)));
+    
     
     //crystals
     
@@ -110,6 +138,13 @@ public class ItemInit {
     public static final RegistryObject<Item> PHLEBOLEPIS_CRYSTAL = ITEMS.register("phlebolepis_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    
+    public static final RegistryObject<Item> SOUL_CRYSTAL = ITEMS.register("soul_crystal",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> SOUL_SHARD = ITEMS.register("soul_shard",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
     //miscellaneous tools
     
     public static final RegistryObject<Item> AMETHYST_STICK = ITEMS.register("amethyst_stick",
@@ -118,7 +153,25 @@ public class ItemInit {
     public static final RegistryObject<Item> STICKY_AMETHYST_STICK = ITEMS.register("sticky_amethyst_stick",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    public static final RegistryObject<Item> SPECTOGEL = ITEMS.register("spectogel",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    public static final RegistryObject<Item> SPIRITSTONE_SHARD = ITEMS.register("spiritstone_shard",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    //weapons and ammo(imma figure out magic damage tomorrow)
+    
+    public static final RegistryObject<SwordItem> SOULBLADE = ITEMS.register("soulblade",
+            () -> new SwordItem(Tiers.SOUL, 2, 2F, new SwordItem.Properties().tab(CreativeModeTab.TAB_COMBAT)));
+    
+    public static final RegistryObject<Item> SOULBOLT = ITEMS.register("soulbolt",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    
+    
+    public static class Tiers { 	
+    	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of(ItemInit.SOUL_SHARD.get().onLeftClickEntity(null, null, null)));
+    }
     
     
     public static void register(IEventBus eventBus) {

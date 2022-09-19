@@ -30,7 +30,22 @@
   "item.aquaria.phlebolepis_crystal": "phlebolepis Soul Crystal",
   "item.aquaria.amethyst_stick": "Amethyst Stick",
   "item.aquaria.sticky_amethyst_stick": "Sticky Amethyst Stick",
-
+  "item.aquaria.soul_crystal": "Soul Crystal",
+  "item.aquaria.soul_shard": "Soul Shard",
+  "item.aquaria.spectogel": "Spectogel",
+  "item.aquaria.spiritstone_shard": "Spiritstone Shard",
+  "item.aquaria.soulblade": "Soulblade",
+  "item.aquaria.soulbolt": "Soulbolt",
+  
+  "item.aquaria.dipterus_raw": "Raw Dipterus",
+  "item.aquaria.dipterus_cooked": "Cooked Dipterus",
+  "item.aquaria.ornithoprion_raw": "Raw Ornithoprion Flank",
+  "item.aquaria.ornithoprion_cooked": "Cooked Ornithoprion Flank",
+  "item.aquaria.diplacanthus_raw": "Raw Diplacanthus",
+  "item.aquaria.diplacanthus_cooked": "Cooked Diplacanthus",
+  "item.aquaria.lamiaspis_raw": "Raw Lamiaspis",
+  "item.aquaria.lamiaspis_cooked": "Cooked Lamiaspis", 
+  
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",
   "entity.aquaria.goolagongia": "Goolagongia",
