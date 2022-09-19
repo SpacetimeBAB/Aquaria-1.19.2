@@ -8,6 +8,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -113,6 +114,10 @@ public class ItemInit {
 
     public static final RegistryObject<Item> GOOGOO_CRYSTAL = ITEMS.register("googoo_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> ORNITHOPRION_SPAWN_EGG = ITEMS.register("ornithoprion_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityInit.ORNITHOPRION, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
 
     public static final RegistryObject<Item> ORNITHOPRION_CRYSTAL = ITEMS.register("ornithoprion_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
@@ -170,7 +175,7 @@ public class ItemInit {
     
     
     public static class Tiers { 	
-    	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of(ItemInit.SOUL_SHARD.get().onLeftClickEntity(null, null, null)));
+    	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of());
     }
     
     
