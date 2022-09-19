@@ -78,7 +78,7 @@ public class ItemInit {
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     
-    //new items below, pls sort and point out faults :]
+    //crystals
     
     public static final RegistryObject<Item> SPHENA_CRYSTAL = ITEMS.register("sphena_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
@@ -91,8 +91,6 @@ public class ItemInit {
 
     public static final RegistryObject<Item> DOLLY_CRYSTAL = ITEMS.register("dolly_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-    
-    
 
     public static final RegistryObject<Item> DIPLACANTHUS_CRYSTAL = ITEMS.register("diplacanthus_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
@@ -111,7 +109,16 @@ public class ItemInit {
     
     public static final RegistryObject<Item> PHLEBOLEPIS_CRYSTAL = ITEMS.register("phlebolepis_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-
+    
+    //miscellaneous tools
+    
+    public static final RegistryObject<Item> AMETHYST_STICK = ITEMS.register("amethyst_stick",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> STICKY_AMETHYST_STICK = ITEMS.register("sticky_amethyst_stick",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    
     
     
     public static void register(IEventBus eventBus) {

@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "aquaria:item/dipterus_crystal"
+    "layer0": "aquaria:item/amethyst_stick"
   }
 }

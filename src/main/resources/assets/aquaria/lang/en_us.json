@@ -12,7 +12,7 @@
   "item.aquaria.dolly_flesh": "Raw Dolichorhynchops Flesh",
   "item.aquaria.dolly_flesh_cooked": "Cooked Dolichorhynchops Flesh",
   "item.aquaria.raw_goolagongia": "Raw Goolagongia",
-  "item.aquaria.cooked_goolagongia": "Cooked Goolagongia",
+  "item.aquaria.cooked_goolagongia": "Googoogobble",
   "item.aquaria.goolagongia_bucket": "Goolagongia Bucket",
   "item.aquaria.diplacanthus_spawn_egg": "Diplacanthus Spawn Egg",
   "item.aquaria.campbellodus_spawn_egg": "Campbellodus Spawn Egg",
@@ -28,6 +28,8 @@
   "item.aquaria.lamiaspis_crystal": "Lamiaspis Soul Crystal",
   "item.aquaria.Bungartius_crystal": "Bungartius Soul Crystal",
   "item.aquaria.phlebolepis_crystal": "phlebolepis Soul Crystal",
+  "item.aquaria.amethyst_stick": "Amethyst Stick",
+  "item.aquaria.sticky_amethyst_stick": "Sticky Amethyst Stick",
 
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",
