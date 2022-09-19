@@ -52,6 +52,12 @@ public class EntityInit {
                             .sized(0.25f, 0.25f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "campbellodus").toString()));
 
+    public static final RegistryObject<EntityType<OrnithoprionEntity>> ORNITHOPRION =
+            ENTITY_TYPES.register("ornithoprion",
+                    () -> EntityType.Builder.of(OrnithoprionEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(1f, 1f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "ornithoprion").toString()));
+
 
 
     public static void register(IEventBus eventBus) {

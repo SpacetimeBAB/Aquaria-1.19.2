@@ -16,7 +16,7 @@
   "item.aquaria.goolagongia_bucket": "Goolagongia Bucket",
   "item.aquaria.diplacanthus_spawn_egg": "Diplacanthus Spawn Egg",
   "item.aquaria.campbellodus_spawn_egg": "Campbellodus Spawn Egg",
-  
+
   
   "item.aquaria.sphena_crystal": "Sphenacanthus Soul Crystal",
   "item.aquaria.googoo_crystal": "Gooloogongia Soul Crystal",
@@ -46,12 +46,17 @@
   "item.aquaria.lamiaspis_raw": "Raw Lamiaspis",
   "item.aquaria.lamiaspis_cooked": "Cooked Lamiaspis", 
   
+  "item.aquaria.ornithoprion_spawn_egg": "Ornithoprion Spawn Egg",
+
+
+
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",
   "entity.aquaria.goolagongia": "Goolagongia",
   "entity.aquaria.lamiaspis": "Lamiaspis",
   "entity.aquaria.diplacanthus": "Diplacanthus",
-  "entity.aquaria.campbellodus": "Campbellodus"
+  "entity.aquaria.campbellodus": "Campbellodus",
+  "entity.aquaria.ornithoprion": "Ornithoprion"
 
 
 }
