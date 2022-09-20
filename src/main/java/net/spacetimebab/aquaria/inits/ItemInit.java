@@ -96,7 +96,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ORNITHOPRION_RAW = ITEMS.register("ornithoprion_raw",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.ORNITHOPRION_RAW)));
     
-    public static final RegistryObject<Item> DIPLACANTHUS_COOKED = ITEMS.register("diplacanthus_COOKED",
+    public static final RegistryObject<Item> DIPLACANTHUS_COOKED = ITEMS.register("diplacanthus_cooked",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.DIPLACANTHUS_COOKED)));
     
     public static final RegistryObject<Item> DIPLACANTHUS_RAW = ITEMS.register("diplacanthus_raw",
@@ -111,7 +111,7 @@ public class ItemInit {
     public static final RegistryObject<Item> CAMPBELLODUS_COOKED = ITEMS.register("campbellodus_cooked",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.CAMPBELLODUS_COOKED)));
     
-    public static final RegistryObject<Item> CAMPBELLODUS_RAW = ITEMS.register("campbellodus_cooked",
+    public static final RegistryObject<Item> CAMPBELLODUS_RAW = ITEMS.register("campbellodus_raw",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.CAMPBELLODUS_RAW)));
     
     public static final RegistryObject<Item> BUNGARTIUS_COOKED = ITEMS.register("bungartius_cooked",
@@ -144,7 +144,7 @@ public class ItemInit {
     public static final RegistryObject<Item> CAMPBELLODUS_CRYSTAL = ITEMS.register("campbellodus_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
-    public static final RegistryObject<Item> LAMIASPIS_CRYSTAL = ITEMS.register("dipterus_crystal",
+    public static final RegistryObject<Item> LAMIASPIS_CRYSTAL = ITEMS.register("lamiaspis_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<Item> BUNGARTIUS_CRYSTAL = ITEMS.register("bungartius_crystal",
@@ -178,22 +178,22 @@ public class ItemInit {
     //snared souls
     
     public static final RegistryObject<SnaredItem> SNARED_SPHENACANTHUS = ITEMS.register("soul_of_an_old_alien_wedgespine",
-            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC)));
+            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC), ""));
     
-    public static final RegistryObject<Item> SNARED_DOLLY = ITEMS.register("soul_of_a_familiar_long_snouted_face ",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<SnaredItem> SNARED_DOLLY = ITEMS.register("soul_of_a_familiar_long_snouted_face",
+            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC),""));
     
-    public static final RegistryObject<Item> SNARED_GOOGOO = ITEMS.register("soul_of_gooloogongs_first_forman",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<SnaredItem> SNARED_GOOGOO = ITEMS.register("soul_of_gooloogongs_first_forman",
+            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC),""));
     
-    public static final RegistryObject<Item> SNARED_DIPTERUS = ITEMS.register("soul_of_twinned_ancient_wings",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<SnaredItem> SNARED_DIPTERUS = ITEMS.register("soul_of_twinned_ancient_wings",
+            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC),""));
     
-    public static final RegistryObject<Item> SNARED_ORNITHOPRION = ITEMS.register("soul_of_a_sawbladed_avian",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<SnaredItem> SNARED_ORNITHOPRION = ITEMS.register("soul_of_a_sawbladed_avian",
+            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC),""));
     
-    public static final RegistryObject<Item> SNARED_PHLEBOLEPIS = ITEMS.register("soul_of_scaly_flecks",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<SnaredItem> SNARED_PHLEBOLEPIS = ITEMS.register("soul_of_scaly_flecks",
+            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC),""));
         
     
     //weapons and ammo(imma figure out magic damage tomorrow)
