@@ -161,18 +161,37 @@ public class ItemInit {
     public static final RegistryObject<Item> SPIRITSTONE_SHARD = ITEMS.register("spiritstone_shard",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    
+    //snared souls
+    
+    public static final RegistryObject<Item> SNARED_SPHENACANTHUS = ITEMS.register("soul_of_an_old_alien_wedgespine",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> SNARED_DOLLY = ITEMS.register("soul_of_a_familiar_long_snouted_face ",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> SNARED_GOOGOO = ITEMS.register("soul_of_gooloogongs_first_forman",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> SNARED_DIPTERUS = ITEMS.register("soul_of_twinned_ancient_wings",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> SNARED_ORNITHOPRION = ITEMS.register("soul_of_a_sawbladed_avian",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> SNARED_PHLEBOLEPIS = ITEMS.register("soul_of_scaly_flecks",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+        
+    
     //weapons and ammo(imma figure out magic damage tomorrow)
     
-    public static final RegistryObject<SwordItem> SOULBLADE = ITEMS.register("soulblade",
+    public static final RegistryObject<SoulBladeItem> SOULBLADE = ITEMS.register("soulblade",
             () -> new SoulBladeItem(Tiers.SOUL, 2, 2F, new SoulBladeItem.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     public static final RegistryObject<Item> SOULBOLT = ITEMS.register("soulbolt",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     
-    
-    
-    //bab pls help
     public static class Tiers { 	
     	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of(ItemInit.SOUL_SHARD.get()));
     }
