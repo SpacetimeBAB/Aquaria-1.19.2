@@ -67,7 +67,9 @@
   "entity.aquaria.diplacanthus": "Diplacanthus",
   "entity.aquaria.campbellodus": "Campbellodus",
   "entity.aquaria.ornithoprion": "Ornithoprion",
-  "entity.aquaria.bungaritus": "Bungartius"
+  "entity.aquaria.bungaritus": "Bungartius",
+
+  "block.aquaria.resurrection_altar": "Resurrection Altar"
 
 
 }
