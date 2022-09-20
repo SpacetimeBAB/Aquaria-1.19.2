@@ -55,6 +55,8 @@
   "item.aquaria.lamiaspis_cooked": "Cooked Lamiaspis", 
   
   "item.aquaria.ornithoprion_spawn_egg": "Ornithoprion Spawn Egg",
+  "item.aquaria.bungaritus_spawn_egg": "Bungartius Spawn Egg",
+
 
 
 
@@ -64,7 +66,8 @@
   "entity.aquaria.lamiaspis": "Lamiaspis",
   "entity.aquaria.diplacanthus": "Diplacanthus",
   "entity.aquaria.campbellodus": "Campbellodus",
-  "entity.aquaria.ornithoprion": "Ornithoprion"
+  "entity.aquaria.ornithoprion": "Ornithoprion",
+  "entity.aquaria.bungaritus": "Bungartius"
 
 
 }
