@@ -18,6 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.Aquaria;
+import net.spacetimebab.aquaria.inits.wpcustom.SnaredItem;
 import net.spacetimebab.aquaria.inits.wpcustom.SoulBladeItem;
 
 import java.util.function.Supplier;
@@ -107,6 +108,18 @@ public class ItemInit {
     public static final RegistryObject<Item> LAMIASPIS_RAW = ITEMS.register("lamiaspis_raw",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.LAMIASPIS_RAW)));
     
+    public static final RegistryObject<Item> CAMPBELLODUS_COOKED = ITEMS.register("campbellodus_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.CAMPBELLODUS_COOKED)));
+    
+    public static final RegistryObject<Item> CAMPBELLODUS_RAW = ITEMS.register("campbellodus_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.CAMPBELLODUS_RAW)));
+    
+    public static final RegistryObject<Item> BUNGARTIUS_COOKED = ITEMS.register("bungartius_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.BUNGARTIUS_COOKED)));
+    
+    public static final RegistryObject<Item> BUNGARTIUS_RAW = ITEMS.register("bungartius_raw",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.BUNGARTIUS_RAW)));
+    
     
     //crystals
     
@@ -164,8 +177,8 @@ public class ItemInit {
     
     //snared souls
     
-    public static final RegistryObject<Item> SNARED_SPHENACANTHUS = ITEMS.register("soul_of_an_old_alien_wedgespine",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<SnaredItem> SNARED_SPHENACANTHUS = ITEMS.register("soul_of_an_old_alien_wedgespine",
+            () -> new SnaredItem(new SnaredItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<Item> SNARED_DOLLY = ITEMS.register("soul_of_a_familiar_long_snouted_face ",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
