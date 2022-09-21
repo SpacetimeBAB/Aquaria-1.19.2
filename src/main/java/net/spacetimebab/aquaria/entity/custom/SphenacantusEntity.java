@@ -8,11 +8,14 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
@@ -24,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.Vec3;
 import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
 import net.spacetimebab.aquaria.inits.ItemInit;
 import org.jetbrains.annotations.Nullable;
@@ -34,6 +38,8 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.core.processor.IBone;
+import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static net.spacetimebab.aquaria.inits.ItemInit.SPHENA_BUCKET;
 
@@ -47,9 +53,34 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
 
     public SphenacantusEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
         super(p_30341_, p_30342_);
+        
+        //tilt control segment
+        
+        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
+        this.lookControl = new SmoothSwimmingLookControl(this, 10);
+        this.maxUpStep = 0.9f;
+        
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
+    
+    public void tick() {
+        super.tick();
+ 
+        if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
+            Vec3 vec3 = this.getViewVector(0.0F);
+            float f = Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+            float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+ 
+        }
+ 
+    }
+    
+    
+    
+    //end of tilt control
+    
+    
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
