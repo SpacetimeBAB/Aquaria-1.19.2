@@ -36,7 +36,11 @@
   "item.aquaria.soul_of_twinned_ancient_wings": "Snared Soul",
   "item.aquaria.soul_of_a_sawbladed_avian": "Snared Soul",
   "item.aquaria.soul_of_scaly_flecks": "Snared Soul",
-    
+  "item.aquaria.soul_of_halved_tiny_thorns": "Snared Soul",  
+  "item.aquaria.soul_of_old_bungarts_lost_memory": "Snared Soul",  
+  "item.aquaria.soul_of_campbells_proud_love": "Snared Soul",  
+  "item.aquaria.soul_of_a_sharkfinned_bramble": "Snared Soul",  
+        
   "item.aquaria.sticky_amethyst_stick": "Sticky Amethyst Stick",
   "item.aquaria.soul_crystal": "Soul Crystal",
   "item.aquaria.soul_shard": "Soul Shard",
@@ -51,6 +55,10 @@
   "item.aquaria.ornithoprion_cooked": "Cooked Ornithoprion Flank",
   "item.aquaria.diplacanthus_raw": "Raw Diplacanthus",
   "item.aquaria.diplacanthus_cooked": "Cooked Diplacanthus",
+  "item.aquaria.campbellodus_cooked": "Cooked Campbellodus",
+  "item.aquaria.campbellodus_raw": "Raw Campbellodus",
+  "item.aquaria.bungartius_raw": "Raw Bungartius",
+  "item.aquaria.bungartius_cooked": "Cooked Bungartius", 
   "item.aquaria.lamiaspis_raw": "Raw Lamiaspis",
   "item.aquaria.lamiaspis_cooked": "Cooked Lamiaspis", 
   

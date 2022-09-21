@@ -15,9 +15,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
-public class SnaredItem extends Item{
+public class TooltipItem extends Item{
 
-	public SnaredItem(Properties properties, String text) {
+	public TooltipItem(Properties properties, String text) {
 		super(properties);
 		// TODO Auto-generated constructor stub
 	}
