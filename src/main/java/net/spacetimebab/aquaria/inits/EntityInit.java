@@ -58,6 +58,12 @@ public class EntityInit {
                             .sized(1f, 1f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "ornithoprion").toString()));
 
+    public static final RegistryObject<EntityType<BungaritusEntity>> BUNGARITUS =
+            ENTITY_TYPES.register("bungaritus",
+                    () -> EntityType.Builder.of(BungaritusEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(1.5f, 1.5f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "bungaritus").toString()));
+
 
 
     public static void register(IEventBus eventBus) {

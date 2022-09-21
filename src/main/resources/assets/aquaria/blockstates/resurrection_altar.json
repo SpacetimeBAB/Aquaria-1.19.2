@@ -1,0 +1,24 @@
+{
+  "variants": {
+"facing=north": {
+"model": "aquaria:block/resurrection_altar"
+},
+"facing=south": {
+"model": "aquaria:block/resurrection_altar",
+"y": 180
+},
+"facing=west": {
+"model": "aquaria:block/resurrection_altar",
+"y": 270
+},
+"facing=east": {
+"model": "aquaria:block/resurrection_altar",
+"y": 90
+}
+}
+}
+
+
+
+
+
