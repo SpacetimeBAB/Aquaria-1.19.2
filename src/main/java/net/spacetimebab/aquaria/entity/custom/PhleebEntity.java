@@ -33,8 +33,8 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class LamiaspisEntity extends AbstractSchoolingFish implements IAnimatable, Bucketable {
-    public LamiaspisEntity(EntityType<? extends AbstractSchoolingFish> p_27523_, Level p_27524_) {
+public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, Bucketable {
+    public PhleebEntity(EntityType<? extends AbstractSchoolingFish> p_27523_, Level p_27524_) {
         super(p_27523_, p_27524_);
     }
 
@@ -43,15 +43,15 @@ public class LamiaspisEntity extends AbstractSchoolingFish implements IAnimatabl
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 1.0D)
+                .add(Attributes.MAX_HEALTH, 3.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double) 1.25D)
-                .add( Attributes.ARMOR, 4D);
+                .add( Attributes.ARMOR, 10D);
     }
 
     private AnimationFactory factory = new AnimationFactory(this);
 
     public int getMaxSchoolSize() {
-        return 10;
+        return 100;
     }
     protected SoundEvent getFlopSound() {
         return SoundEvents.SALMON_FLOP;
@@ -69,6 +69,17 @@ public class LamiaspisEntity extends AbstractSchoolingFish implements IAnimatabl
     protected SoundEvent getHurtSound(DamageSource p_29795_) {
         return SoundEvents.SALMON_HURT;
     }
+    
+    @Override
+    public void aiStep() {
+        if (!this.isInWater() && this.onGround && this.verticalCollision) {
+            this.onGround = false;
+            this.hasImpulse = true;
+            this.playSound(this.getFlopSound(), this.getSoundVolume(), this.getVoicePitch());
+        }
+        super.aiStep();
+    }
+    
 
     private void addParticlesAroundSelf(ParticleOptions p_28338_) {
         for(int i = 0; i < 7; ++i) {
@@ -84,79 +95,3 @@ public class LamiaspisEntity extends AbstractSchoolingFish implements IAnimatabl
         return 0.5F;
     }
 
-
-
-
-    @Override
-    public ItemStack getBucketItemStack() {
-        return null;
-    }
-
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (this.isInWater() && event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Lamiaspis.swim", true));
-            return PlayState.CONTINUE;
-        }
-        if (!this.isInWater()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Lamiaspis.flop", true));
-            return PlayState.CONTINUE;
-        }
-
-        return PlayState.CONTINUE;
-    }
-
-
-    @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller",
-                0, this::predicate));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
-    }
-
-    @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
-
-    }
-    @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        tag.putInt("Variant",this.getTypeVariant());
-    }
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
-    }
-
-    @Override
-    public void aiStep() {
-        super.aiStep();
-        this.level.addParticle(ParticleTypes.GLOW, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 0.0D, 0.0D, 0.0D);
-
-    }
-
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
-                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
-                                        @Nullable CompoundTag p_146750_) {
-        LamiaspisVariant variant = Util.getRandom(LamiaspisVariant.values(), this.random);
-        setVariant(variant);
-        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
-    }
-    public LamiaspisVariant getVariant() {
-        return LamiaspisVariant.byId(this.getTypeVariant() & 255);
-    }
-
-    private int getTypeVariant() {
-        return this.entityData.get(DATA_ID_TYPE_VARIANT);
-    }
-
-    private void setVariant(LamiaspisVariant variant) {
-        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
-    }
-}

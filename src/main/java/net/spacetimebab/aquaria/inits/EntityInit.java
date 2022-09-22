@@ -64,6 +64,11 @@ public class EntityInit {
                             .sized(1.5f, 1.5f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "bungaritus").toString()));
 
+    public static final RegistryObject<EntityType<PhleebEntity>> PHLEEB =
+            ENTITY_TYPES.register("phleeb",
+                    () -> EntityType.Builder.of(PhleebEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(0.25f, 0.25f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "phleeb").toString()));
 
 
     public static void register(IEventBus eventBus) {
