@@ -13,6 +13,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
@@ -56,6 +58,8 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
     public OrnithoprionEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
         super(p_30341_, p_30342_);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
+        this.lookControl = new SmoothSwimmingLookControl(this, 10);
     }
 
 
@@ -76,7 +80,7 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
-        this.goalSelector.addGoal(4,new MeleeAttackGoal(this,1.3d,false));
+        this.goalSelector.addGoal(4,new MeleeAttackGoal(this,2.0d,false));
         this.goalSelector.addGoal(3,new HungriGetFudGoal(this, LivingEntity.class,false));
         this.goalSelector.addGoal(5,new GoToBottom(this,1.0d,1));
     }
