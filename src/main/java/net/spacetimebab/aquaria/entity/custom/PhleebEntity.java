@@ -95,3 +95,19 @@ public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, 
         return 0.5F;
     }
 
+    @Override
+    public ItemStack getBucketItemStack() {
+        return null;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return null;
+    }
+}
+
