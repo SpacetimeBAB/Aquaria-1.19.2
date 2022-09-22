@@ -108,6 +108,7 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         if (flag) {
             this.doEnchantDamageEffects(this, p_28319_);
             this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
+            this.canDisableShield();
         }
 
         return flag;
