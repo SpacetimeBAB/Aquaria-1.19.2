@@ -28,7 +28,7 @@ public class TooltipItem extends Item{
 				components.add(Component.literal(text).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.AQUA));
 				
 			}else {	
-				components.add(Component.literal(text).withStyle(ChatFormatting.GOLD));
+				components.add(Component.literal("Hold shift to observe.").withStyle(ChatFormatting.GOLD));
 			}
 			
 			super.appendHoverText(stack, level, components, flag);
