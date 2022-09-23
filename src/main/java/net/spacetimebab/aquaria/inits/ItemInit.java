@@ -216,6 +216,13 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.PHLEEB, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    //buckets
+    
+    
+    public static final RegistryObject<Item> PHLEEB_BUCKET = ITEMS.register("phleeb_bucket",
+            () -> new ItemModFishBucket(EntityInit.PHLEEB, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+    
     
     //weapons and ammo(imma figure out magic damage tomorrow)
     
@@ -223,7 +230,7 @@ public class ItemInit {
             () -> new SoulBladeItem(Tiers.SOUL, 2, 2F, new SoulBladeItem.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     public static final RegistryObject<Item> SOULBOLT = ITEMS.register("soulbolt",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     
     public static class Tiers { 	
