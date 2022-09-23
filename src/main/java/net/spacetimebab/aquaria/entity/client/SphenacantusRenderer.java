@@ -21,8 +21,8 @@ public class SphenacantusRenderer extends GeoEntityRenderer<SphenacantusEntity> 
             Util.make(Maps.newEnumMap(SphenacanthusVariant.class), (p_114874_) -> {
                 p_114874_.put(SphenacanthusVariant.WILD,
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/wild_sphenacanthus.png"));
-                p_114874_.put(SphenacanthusVariant.MELANISTIC,
-                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/melanistic_sphenacanthus.png"));
+                p_114874_.put(SphenacanthusVariant.AMELANISTIC,
+                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/amelanistic_sphenacanthus.png"));
                 p_114874_.put(SphenacanthusVariant.ALBINO,
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/albino_sphenacanthus.png"));
                 p_114874_.put(SphenacanthusVariant.PIEBALD,

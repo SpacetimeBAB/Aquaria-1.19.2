@@ -21,13 +21,13 @@ public class PhleebRenderer extends GeoEntityRenderer<PhleebEntity> {
     public static final Map<SphenacanthusVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(SphenacanthusVariant.class), (p_114874_) -> {
                 p_114874_.put(SphenacanthusVariant.WILD,
-                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/wild_sphenacanthus.png"));
+                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepis.png"));
                 p_114874_.put(SphenacanthusVariant.AMELANISTIC,
-                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/amelanistic_sphenacanthus.png"));
+                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepisplatinum.png"));
                 p_114874_.put(SphenacanthusVariant.ALBINO,
-                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/albino_sphenacanthus.png"));
-                p_114874_.put(SphenacanthusVariant.PIEBALD,
-                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/sphenacantus/piebald_sphenacanthus.png"));
+                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepisalbino.png"));
+                p_114874_.put(SphenacanthusVariant.OPAL,
+                        new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepisopal.png"));
             });
 
 
