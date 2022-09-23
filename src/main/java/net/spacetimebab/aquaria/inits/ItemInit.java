@@ -82,6 +82,10 @@ public class ItemInit {
     public static final RegistryObject<Item> CAMPBELLODUS_SPAWN_EGG = ITEMS.register("campbellodus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityInit.CAMPBELLODUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
+    public static final RegistryObject<Item> BUNGARITUS_SPAWN_EGG = ITEMS.register("bungaritus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityInit.BUNGARITUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     //food
     public static final RegistryObject<Item> DIPTERUS_COOKED = ITEMS.register("dipterus_cooked",
@@ -96,7 +100,7 @@ public class ItemInit {
     public static final RegistryObject<Item> ORNITHOPRION_RAW = ITEMS.register("ornithoprion_raw",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.ORNITHOPRION_RAW)));
     
-    public static final RegistryObject<Item> DIPLACANTHUS_COOKED = ITEMS.register("diplacanthus_COOKED",
+    public static final RegistryObject<Item> DIPLACANTHUS_COOKED = ITEMS.register("diplacanthus_cooked",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.DIPLACANTHUS_COOKED)));
     
     public static final RegistryObject<Item> DIPLACANTHUS_RAW = ITEMS.register("diplacanthus_raw",
@@ -111,7 +115,7 @@ public class ItemInit {
     public static final RegistryObject<Item> CAMPBELLODUS_COOKED = ITEMS.register("campbellodus_cooked",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.CAMPBELLODUS_COOKED)));
     
-    public static final RegistryObject<Item> CAMPBELLODUS_RAW = ITEMS.register("campbellodus_cooked",
+    public static final RegistryObject<Item> CAMPBELLODUS_RAW = ITEMS.register("campbellodus_raw",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.CAMPBELLODUS_RAW)));
     
     public static final RegistryObject<Item> BUNGARTIUS_COOKED = ITEMS.register("bungartius_cooked",
@@ -144,7 +148,7 @@ public class ItemInit {
     public static final RegistryObject<Item> CAMPBELLODUS_CRYSTAL = ITEMS.register("campbellodus_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
-    public static final RegistryObject<Item> LAMIASPIS_CRYSTAL = ITEMS.register("dipterus_crystal",
+    public static final RegistryObject<Item> LAMIASPIS_CRYSTAL = ITEMS.register("lamiaspis_crystal",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<Item> BUNGARTIUS_CRYSTAL = ITEMS.register("bungartius_crystal",
@@ -180,7 +184,7 @@ public class ItemInit {
     public static final RegistryObject<TooltipItem> SNARED_SPHENACANTHUS = ITEMS.register("soul_of_an_old_alien_wedgespine",
             () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of an old alien wedgespine. It quivers in fear and its spines are raised."));
     
-    public static final RegistryObject<TooltipItem> SNARED_DOLLY = ITEMS.register("soul_of_a_familiar_long_snouted_face ",
+    public static final RegistryObject<TooltipItem> SNARED_DOLLY = ITEMS.register("soul_of_a_familiar_long_snouted_face",
             () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of a familiar long-snouted face. It perches upon its snare without fear, and its snout sniffs excitedly."));
     
     public static final RegistryObject<TooltipItem> SNARED_GOOGOO = ITEMS.register("soul_of_gooloogongs_first_forman",

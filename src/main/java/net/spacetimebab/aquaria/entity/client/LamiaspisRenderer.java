@@ -17,8 +17,10 @@ import net.spacetimebab.aquaria.entity.variant.LamiaspisVariant;
 import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+import software.bernie.geckolib3.renderers.geo.layer.LayerGlowingAreasGeo;
 
 import java.util.Map;
+import java.util.function.Function;
 
 public class LamiaspisRenderer extends GeoEntityRenderer<LamiaspisEntity> {
     public static final Map<LamiaspisVariant, ResourceLocation> LOCATION_BY_VARIANT =
@@ -50,5 +52,12 @@ public class LamiaspisRenderer extends GeoEntityRenderer<LamiaspisEntity> {
                                     ResourceLocation textureLocation) {
         stack.scale(1F, 1F, 1F);
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
+    }
+
+    public class EmissiveRenderer extends LayerGlowingAreasGeo {
+
+        public EmissiveRenderer(GeoEntityRenderer renderer, Function funcGetCurrentTexture, Function funcGetCurrentModel, Function funcGetEmissiveRenderType) {
+            super(renderer, funcGetCurrentTexture, funcGetCurrentModel, funcGetEmissiveRenderType);
+        }
     }
 }

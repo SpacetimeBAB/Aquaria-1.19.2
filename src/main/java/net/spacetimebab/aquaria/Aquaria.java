@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.spacetimebab.aquaria.inits.BlockInit;
 import net.spacetimebab.aquaria.inits.EntityInit;
 import net.spacetimebab.aquaria.inits.FoodInit;
 import net.spacetimebab.aquaria.inits.ItemInit;
@@ -34,6 +35,7 @@ public class Aquaria
 
         ItemInit.register(modEventBus);
         EntityInit.register(modEventBus);
+        BlockInit.register(modEventBus);
 
 
 

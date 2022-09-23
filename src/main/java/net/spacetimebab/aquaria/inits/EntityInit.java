@@ -21,7 +21,7 @@ public class EntityInit {
     public static final RegistryObject<EntityType<SphenacantusEntity>> SPHENACANTHUS =
             ENTITY_TYPES.register("sphenacantus",
                     () -> EntityType.Builder.of(SphenacantusEntity::new, MobCategory.WATER_CREATURE)
-                            .sized(1f, 1f)
+                            .sized(0.75f, 0.75f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "sphenacantus").toString()));
     public static final RegistryObject<EntityType<DipterusEntity>> DIPTERUS =
             ENTITY_TYPES.register("dipterus",

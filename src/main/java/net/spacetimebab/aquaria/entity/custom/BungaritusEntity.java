@@ -13,6 +13,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
@@ -56,6 +58,13 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
     public BungaritusEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
         super(p_30341_, p_30342_);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+
+        //tilt control segment
+
+        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
+        this.lookControl = new SmoothSwimmingLookControl(this, 10);
+        this.maxUpStep = 0.9f;
+
     }
 
 
@@ -77,7 +86,7 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
-        this.goalSelector.addGoal(4,new MeleeAttackGoal(this,1.3d,false));
+        this.goalSelector.addGoal(4,new MeleeAttackGoal(this,2.0d,false));
         this.goalSelector.addGoal(3,new HungriGetFudGoal(this, LivingEntity.class,false));
     }
 
@@ -99,6 +108,7 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         if (flag) {
             this.doEnchantDamageEffects(this, p_28319_);
             this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
+            this.canDisableShield();
         }
 
         return flag;
