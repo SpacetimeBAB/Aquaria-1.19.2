@@ -45,220 +45,194 @@ import static net.spacetimebab.aquaria.inits.ItemInit.SPHENA_BUCKET;
 
 public class SphenacantusEntity extends AbstractFish implements IAnimatable, Bucketable {
 
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
-            SynchedEntityData.defineId(SphenacantusEntity.class, EntityDataSerializers.INT);
+	private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData
+			.defineId(SphenacantusEntity.class, EntityDataSerializers.INT);
 
+	private AnimationFactory factory = new AnimationFactory(this);
 
-    private AnimationFactory factory = new AnimationFactory(this);
+	public SphenacantusEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
+		super(p_30341_, p_30342_);
 
-    public SphenacantusEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
-        super(p_30341_, p_30342_);
-        
-        //tilt control segment
-        
-        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
-        this.lookControl = new SmoothSwimmingLookControl(this, 10);
-        this.maxUpStep = 0.9f;
-        
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-    }
+		// tilt control segment
 
-    
-    public void tick() {
-        super.tick();
- 
-        if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
-            Vec3 vec3 = this.getViewVector(0.0F);
-            float f = Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
-            float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
- 
-        }
- 
-    }
-    
-    
-    
-    //end of tilt control
-    
-    
+		this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
+		this.lookControl = new SmoothSwimmingLookControl(this, 10);
+		this.maxUpStep = 0.9f;
 
-    public static AttributeSupplier.Builder attributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 10.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 0.9D)
-                .add( Attributes.ARMOR, 2D)
-                .add(Attributes.ATTACK_DAMAGE,5D);
-    }
+		this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+	}
 
-    @Override
-    public boolean canBeLeashed(Player p_30346_) {
-        return super.canBeLeashed(p_30346_);
-    }
+	public void tick() {
+		super.tick();
 
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
-        this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
-        this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
-    }
+		if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
+			Vec3 vec3 = this.getViewVector(0.0F);
+			float f = Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+			float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
 
-    protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
-        return new AmphibiousPathNavigation(this, waterBoundPathNavigation);
-    }
+		}
 
+	}
 
-    public boolean doHurtTarget(Entity p_28319_) {
-        boolean flag = p_28319_.hurt(DamageSource.thorns(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
-        if (flag) {
-            this.doEnchantDamageEffects(this, p_28319_);
-            this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
-        }
+	// end of tilt control
 
-        return flag;
-    }
+	public static AttributeSupplier.Builder attributes() {
+		return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, (double) 0.9D)
+				.add(Attributes.ARMOR, 2D).add(Attributes.ATTACK_DAMAGE, 5D);
+	}
 
-    private void addParticlesAroundSelf(ParticleOptions p_28338_) {
-        for(int i = 0; i < 7; ++i) {
-            double d0 = this.random.nextGaussian() * 0.01D;
-            double d1 = this.random.nextGaussian() * 0.01D;
-            double d2 = this.random.nextGaussian() * 0.01D;
-            this.level.addParticle(p_28338_, this.getRandomX(1.0D), this.getRandomY() + 0.2D, this.getRandomZ(1.0D), d0, d1, d2);
-        }
+	@Override
+	public boolean canBeLeashed(Player p_30346_) {
+		return super.canBeLeashed(p_30346_);
+	}
 
-    }
+	protected void registerGoals() {
+		this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
+		this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
+		this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
+		this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+	}
 
-    public boolean canBreatheUnderwater() {
-        return true;
-    }
+	protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
+		return new AmphibiousPathNavigation(this, waterBoundPathNavigation);
+	}
 
+	public boolean doHurtTarget(Entity p_28319_) {
+		boolean flag = p_28319_.hurt(DamageSource.thorns(this),
+				(float) ((int) this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
+		if (flag) {
+			this.doEnchantDamageEffects(this, p_28319_);
+			this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
+		}
 
+		return flag;
+	}
 
+	private void addParticlesAroundSelf(ParticleOptions p_28338_) {
+		for (int i = 0; i < 7; ++i) {
+			double d0 = this.random.nextGaussian() * 0.01D;
+			double d1 = this.random.nextGaussian() * 0.01D;
+			double d2 = this.random.nextGaussian() * 0.01D;
+			this.level.addParticle(p_28338_, this.getRandomX(1.0D), this.getRandomY() + 0.2D, this.getRandomZ(1.0D), d0,
+					d1, d2);
+		}
 
+	}
 
+	public boolean canBreatheUnderwater() {
+		return true;
+	}
 
+	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+		if (this.isInWater() && event.isMoving()) {
+			event.getController()
+					.setAnimation(new AnimationBuilder().addAnimation("animation.sphenacanthus.swim", true));
+			return PlayState.CONTINUE;
+		}
+		if (!this.isInWater()) {
+			event.getController()
+					.setAnimation(new AnimationBuilder().addAnimation("animation.sphenacanthus.flop", true));
+			return PlayState.CONTINUE;
+		}
 
+		return PlayState.CONTINUE;
+	}
 
+	@Override
+	public void registerControllers(AnimationData data) {
+		data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
+	}
 
+	@Override
+	public AnimationFactory getFactory() {
+		return this.factory;
+	}
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (this.isInWater() && event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sphenacanthus.swim", true));
-            return PlayState.CONTINUE;
-        }
-        if (!this.isInWater()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.sphenacanthus.flop", true));
-            return PlayState.CONTINUE;
-        }
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.DOLPHIN_AMBIENT_WATER;
+	}
 
-        return PlayState.CONTINUE;
-    }
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+		return SoundEvents.DOLPHIN_HURT;
+	}
 
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.DOLPHIN_DEATH;
+	}
 
-    @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller",
-                0, this::predicate));
-    }
+	protected SoundEvent getFlopSound() {
+		return SoundEvents.SALMON_FLOP;
+	}
 
-    @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
-    }
+	protected float getSoundVolume() {
+		return 0.5F;
+	}
 
+	@Override
+	public boolean fromBucket() {
+		return false;
+	}
 
+	@Override
+	public void setFromBucket(boolean p_148834_) {
 
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.DOLPHIN_AMBIENT_WATER;
-    }
+	}
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.DOLPHIN_HURT;
-    }
+	@Override
+	public void saveToBucketTag(ItemStack p_148833_) {
 
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.DOLPHIN_DEATH;
-    }
-    protected SoundEvent getFlopSound(){
-        return SoundEvents.SALMON_FLOP;
-    }
+	}
 
+	@Override
+	public void loadFromBucketTag(CompoundTag p_148832_) {
 
+	}
 
+	@Override
+	public ItemStack getBucketItemStack() {
+		return new ItemStack(SPHENA_BUCKET.get());
+	}
 
+	@Override
+	public SoundEvent getPickupSound() {
+		return SoundEvents.BUCKET_FILL_FISH;
+	}
 
-    protected float getSoundVolume() {
-        return 0.5F;
-    }
+	@Override
+	public void readAdditionalSaveData(CompoundTag tag) {
+		super.readAdditionalSaveData(tag);
+		this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
 
+	}
 
+	@Override
+	public void addAdditionalSaveData(CompoundTag tag) {
+		super.addAdditionalSaveData(tag);
+		tag.putInt("Variant", this.getTypeVariant());
+	}
 
-    @Override
-    public boolean fromBucket() {
-        return false;
-    }
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+	}
 
-    @Override
-    public void setFromBucket(boolean p_148834_) {
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
+			MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
+		SphenacanthusVariant variant = Util.getRandom(SphenacanthusVariant.values(), this.random);
+		setVariant(variant);
+		return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+	}
 
-    }
+	public SphenacanthusVariant getVariant() {
+		return SphenacanthusVariant.byId(this.getTypeVariant() & 255);
+	}
 
-    @Override
-    public void saveToBucketTag(ItemStack p_148833_) {
+	private int getTypeVariant() {
+		return this.entityData.get(DATA_ID_TYPE_VARIANT);
+	}
 
-    }
-
-    @Override
-    public void loadFromBucketTag(CompoundTag p_148832_) {
-
-    }
-
-    @Override
-    public ItemStack getBucketItemStack() {
-        return new ItemStack(SPHENA_BUCKET.get());
-    }
-
-
-
-
-    @Override
-    public SoundEvent getPickupSound() {
-        return SoundEvents.BUCKET_FILL_FISH;
-    }
-    @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
-
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        tag.putInt("Variant",this.getTypeVariant());
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
-    }
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
-                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
-                                        @Nullable CompoundTag p_146750_) {
-        SphenacanthusVariant variant = Util.getRandom(SphenacanthusVariant.values(), this.random);
-        setVariant(variant);
-        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
-    }
-
-    public SphenacanthusVariant getVariant() {
-        return SphenacanthusVariant.byId(this.getTypeVariant() & 255);
-    }
-
-    private int getTypeVariant() {
-        return this.entityData.get(DATA_ID_TYPE_VARIANT);
-    }
-
-    private void setVariant(SphenacanthusVariant variant) {
-        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
-    }
+	private void setVariant(SphenacanthusVariant variant) {
+		this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+	}
 }

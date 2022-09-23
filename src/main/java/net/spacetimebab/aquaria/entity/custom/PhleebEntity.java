@@ -17,13 +17,23 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.spacetimebab.aquaria.entity.variant.GoologongiaVariant;
 import net.spacetimebab.aquaria.entity.variant.LamiaspisVariant;
+import net.spacetimebab.aquaria.entity.variant.PhleebVariant;
+import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
+
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -34,8 +44,12 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, Bucketable {
+	
     public PhleebEntity(EntityType<? extends AbstractSchoolingFish> p_27523_, Level p_27524_) {
         super(p_27523_, p_27524_);
+        
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+        
     }
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
@@ -44,9 +58,22 @@ public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 3.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 1.25D)
+                .add(Attributes.MOVEMENT_SPEED, (double) 1.0D)
                 .add( Attributes.ARMOR, 10D);
     }
+    
+    
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
+        this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
+        this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+    }
+
+    protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
+        return new AmphibiousPathNavigation(this, waterBoundPathNavigation);
+    }
+    
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -70,6 +97,63 @@ public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, 
         return SoundEvents.SALMON_HURT;
     }
     
+    protected float getSoundVolume() {
+        return 0.5F;
+
+    }
+    
+    
+    @Override
+    public boolean fromBucket() {
+        return false;
+    }
+
+    @Override
+    public void setFromBucket(boolean p_148834_) {
+
+    }
+
+    @Override
+    public void saveToBucketTag(ItemStack p_148833_) {
+
+    }
+
+    @Override
+    public void loadFromBucketTag(CompoundTag p_148832_) {
+
+    }
+
+    @Override
+    public SoundEvent getPickupSound() {
+        return SoundEvents.BUCKET_FILL_FISH;
+    }
+    
+
+	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+		if (this.isInWater() && event.isMoving()) {
+			event.getController()
+					.setAnimation(new AnimationBuilder().addAnimation("animation.phleeb.swim", true));
+			return PlayState.CONTINUE;
+		}
+		if (!this.isInWater()) {
+			event.getController()
+					.setAnimation(new AnimationBuilder().addAnimation("animation.phleeb.bounce", true));
+			return PlayState.CONTINUE;
+		}
+
+		return PlayState.CONTINUE;
+	}
+
+	@Override
+	public void registerControllers(AnimationData data) {
+		data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
+	}
+
+	@Override
+	public AnimationFactory getFactory() {
+		return this.factory;
+	}
+    
     @Override
     public void aiStep() {
         if (!this.isInWater() && this.onGround && this.verticalCollision) {
@@ -80,6 +164,9 @@ public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, 
         super.aiStep();
     }
     
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
 
     private void addParticlesAroundSelf(ParticleOptions p_28338_) {
         for(int i = 0; i < 7; ++i) {
@@ -88,10 +175,60 @@ public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, 
             double d2 = this.random.nextGaussian() * 0.01D;
             this.level.addParticle(p_28338_, this.getRandomX(1.0D), this.getRandomY() + 0.2D, this.getRandomZ(1.0D), d0, d1, d2);
         }
+        
+
+
+    }
+	@Override
+	public ItemStack getBucketItemStack() {
+		// TODO Auto-generated method stub
+		return null;
+		
+		
+	}
+	
+	
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
 
     }
 
-    protected float getSoundVolume() {
-        return 0.5F;
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("Variant",this.getTypeVariant());
     }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+    }
+    
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
+            MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
+            @Nullable CompoundTag p_146750_) {
+    	PhleebVariant variant = Util.getRandom(PhleebVariant.values(), this.random);
+    	setVariant(variant);
+    	return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+    }
+
+    public PhleebVariant getVariant() {
+    	return PhleebVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    private int getTypeVariant() {
+    	return this.entityData.get(DATA_ID_TYPE_VARIANT);
+    }
+
+    private void setVariant(PhleebVariant variant) {
+    	this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+    }
+
+    
+
+}
+
 
