@@ -25,9 +25,12 @@ public class TooltipItem extends Item{
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> components, TooltipFlag flag, String text) {
 			
 			if(Screen.hasShiftDown()) {
-				components.add(Component.translatable(text).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.AQUA));
+				components.add(Component.literal(text).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.AQUA));
 				
+			}else {	
+				components.add(Component.literal(text).withStyle(ChatFormatting.GOLD));
 			}
+			
 			super.appendHoverText(stack, level, components, flag);
 	}
 
