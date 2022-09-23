@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -17,6 +18,8 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
@@ -29,6 +32,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.Vec3;
 import net.spacetimebab.aquaria.entity.variant.GoologongiaVariant;
 import net.spacetimebab.aquaria.entity.variant.LamiaspisVariant;
 import net.spacetimebab.aquaria.entity.variant.PhleebVariant;
@@ -50,7 +54,22 @@ public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, 
         
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         
+        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
+        this.lookControl = new SmoothSwimmingLookControl(this, 10);
+        
     }
+    
+	public void tick() {
+		super.tick();
+
+		if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
+			Vec3 vec3 = this.getViewVector(0.0F);
+			float f = Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+			float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+
+		}
+
+	}
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
             SynchedEntityData.defineId(LamiaspisEntity.class, EntityDataSerializers.INT);

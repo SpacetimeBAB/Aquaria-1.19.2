@@ -212,6 +212,11 @@ public class ItemInit {
             () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of a sharkfinned bramble, it is indistinguishable in a pile of osteoderms and spines."));
         
     
+    public static final RegistryObject<Item> PHLEEB_SPAWN = ITEMS.register("phleeb_spawn",
+            () -> new ForgeSpawnEggItem(EntityInit.PHLEEB, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    
     //weapons and ammo(imma figure out magic damage tomorrow)
     
     public static final RegistryObject<SoulBladeItem> SOULBLADE = ITEMS.register("soulblade",

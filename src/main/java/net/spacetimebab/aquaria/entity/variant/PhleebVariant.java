@@ -6,8 +6,8 @@ import java.util.Comparator;
 public enum PhleebVariant {
     WILD(0),
     ALBINO(1),
-    MELANISTIC(2),
-    DIAMOND(3);
+    AMELANISTIC(2),
+    OPAL(3);
 
     private static final PhleebVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.comparingInt(PhleebVariant::getId)).toArray(PhleebVariant[]::new);
 

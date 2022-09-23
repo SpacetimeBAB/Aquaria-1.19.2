@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.spacetimebab.aquaria.Aquaria;
 import net.spacetimebab.aquaria.entity.custom.PhleebEntity;
 import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
+import net.spacetimebab.aquaria.entity.variant.PhleebVariant;
 import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
@@ -18,15 +19,15 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 import java.util.Map;
 
 public class PhleebRenderer extends GeoEntityRenderer<PhleebEntity> {
-    public static final Map<SphenacanthusVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(SphenacanthusVariant.class), (p_114874_) -> {
-                p_114874_.put(SphenacanthusVariant.WILD,
+    public static final Map<PhleebVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(PhleebVariant.class), (p_114874_) -> {
+                p_114874_.put(PhleebVariant.WILD,
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepis.png"));
-                p_114874_.put(SphenacanthusVariant.AMELANISTIC,
+                p_114874_.put(PhleebVariant.AMELANISTIC,
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepisplatinum.png"));
-                p_114874_.put(SphenacanthusVariant.ALBINO,
+                p_114874_.put(PhleebVariant.ALBINO,
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepisalbino.png"));
-                p_114874_.put(SphenacanthusVariant.OPAL,
+                p_114874_.put(PhleebVariant.OPAL,
                         new ResourceLocation(Aquaria.MOD_ID, "textures/entity/phleeb/phlebolepisopal.png"));
             });
 
