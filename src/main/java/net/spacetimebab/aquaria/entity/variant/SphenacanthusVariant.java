@@ -6,7 +6,7 @@ import java.util.Comparator;
 public enum SphenacanthusVariant {
     WILD(0),
     ALBINO(1),
-    MELANISTIC(2),
+    AMELANISTIC(2),
     PIEBALD(3);
 
     private static final SphenacanthusVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.comparingInt(SphenacanthusVariant::getId)).toArray(SphenacanthusVariant[]::new);
