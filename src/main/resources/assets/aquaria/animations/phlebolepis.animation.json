@@ -1,28 +1,28 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.phleeb.swim": {
+		"animation.phlebolepis.swim": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
 				"bodycore": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time*360))*10", 0]
+						"vector": [0, "Math.cos((query.anim_time)*360)*10", 0]
 					}
 				},
 				"tail": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time-0.2)*360)*15", 0]
+						"vector": [0, "Math.cos((query.anim_time-0.3)*360)*25", 0]
 					}
 				},
 				"tail2": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time-0.4)*360)*20", 0]
+						"vector": [0, "Math.cos((query.anim_time-0.4)*360)*30", 0]
 					}
 				}
 			}
 		},
-		"animation.phleeb.bounce": {
+		"animation.Phlebolepis.bounce": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -116,26 +116,6 @@
 				"tail2": {
 					"rotation": {
 						"vector": [0, "Math.cos((query.anim_time-0.2)*740)*25", 0]
-					}
-				}
-			}
-		},
-		"animation.phleeb.yaw": {
-			"loop": true,
-			"bones": {
-				"bodycore": {
-					"rotation": {
-						"vector": [0, "query.yaw_speed", 0]
-					}
-				},
-				"tail": {
-					"rotation": {
-						"vector": [0, "query.yaw_speed*-2", 0]
-					}
-				},
-				"tail2": {
-					"rotation": {
-						"vector": [0, "query.yaw_speed*-2.5", 0]
 					}
 				}
 			}

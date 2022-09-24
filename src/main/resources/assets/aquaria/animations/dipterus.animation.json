@@ -77,12 +77,12 @@
 				},
 				"tail": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time-0.4)*180)*25", 0]
+						"vector": [0, "Math.cos((query.anim_time-0.4)*180)*30", 0]
 					}
 				},
 				"tail2": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time-0.8)*180)*30", 0]
+						"vector": [0, "Math.cos((query.anim_time-0.8)*180)*40", 0]
 					}
 				},
 				"head": {

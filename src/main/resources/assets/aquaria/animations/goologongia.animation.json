@@ -7,12 +7,12 @@
 			"bones": {
 				"tail": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time-0.2)*360)*15", 0]
+						"vector": [0, "Math.cos((query.anim_time-0.2)*360)*25", 0]
 					}
 				},
 				"tail2": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time-0.4)*360)*20", 0]
+						"vector": [0, "Math.cos((query.anim_time-0.4)*360)*25", 0]
 					}
 				},
 				"legscore": {
@@ -72,7 +72,7 @@
 				},
 				"bodycore": {
 					"rotation": {
-						"vector": [0, "Math.cos((query.anim_time)*360)*10", 0]
+						"vector": [0, "Math.cos((query.anim_time)*360)*15", 0]
 					}
 				}
 			}
