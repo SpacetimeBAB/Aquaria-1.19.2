@@ -66,7 +66,7 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 30.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 1.5D)
+                .add(Attributes.MOVEMENT_SPEED, (double) 2.5D)
                 .add(Attributes.ATTACK_DAMAGE,5D);
     }
 

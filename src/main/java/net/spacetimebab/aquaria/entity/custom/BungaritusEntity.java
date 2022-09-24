@@ -71,7 +71,7 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 35.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 1.7D)
+                .add(Attributes.MOVEMENT_SPEED, (double) 3D)
                 .add(Attributes.ATTACK_DAMAGE,5D)
                 .add(Attributes.ARMOR,10D);
     }
