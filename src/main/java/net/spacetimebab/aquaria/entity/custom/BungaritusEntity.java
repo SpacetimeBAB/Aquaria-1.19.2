@@ -8,6 +8,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -28,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.Vec3;
 import net.spacetimebab.aquaria.entity.ai.HungriGetFudGoal;
 import net.spacetimebab.aquaria.entity.variant.BungaritusVariant;
 import net.spacetimebab.aquaria.entity.variant.OrnithoprionVariant;
@@ -66,7 +68,18 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         this.maxUpStep = 0.9f;
 
     }
+    
+	public void tick() {
+		super.tick();
 
+		if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
+			Vec3 vec3 = this.getViewVector(0.0F);
+			float f = Mth.cos(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+			float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 180F)) * 0.3F;
+
+		}
+
+	}
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
