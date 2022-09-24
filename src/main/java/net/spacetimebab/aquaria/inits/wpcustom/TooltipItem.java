@@ -14,24 +14,45 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.spacetimebab.aquaria.Aquaria;
 
 public class TooltipItem extends Item{
+	
+	String text;
+	
+	ChatFormatting colour;
 
-	public TooltipItem(Properties properties, String text) {
-		super(properties);
+	public TooltipItem(Properties pProperties) {
+		super(pProperties);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> components, TooltipFlag flag, String text) {
+	public TooltipItem setText (String text) {
+		
+		this.text = text;
+		return this;
+	}
+	
+	public TooltipItem setColour (ChatFormatting colour) {
+		
+		this.colour = colour;
+		return this;
+	}
+	
+	@Override
+	public void appendHoverText(ItemStack pStack, @Nullable Level plevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 			
 			if(Screen.hasShiftDown()) {
-				components.add(Component.literal(text).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.AQUA));
+				pTooltipComponents.add(Component.literal(this.text).withStyle(ChatFormatting.ITALIC).withStyle(this.colour));
 				
 			}else {	
-				components.add(Component.literal("Hold shift to observe.").withStyle(ChatFormatting.GOLD));
+				pTooltipComponents.add(Component.literal("Hold shift to observe.").withStyle(ChatFormatting.GOLD));
 			}
 			
-			super.appendHoverText(stack, level, components, flag);
+			super.appendHoverText(pStack, plevel, pTooltipComponents, pIsAdvanced);
 	}
+	
+	
+	
 
 }

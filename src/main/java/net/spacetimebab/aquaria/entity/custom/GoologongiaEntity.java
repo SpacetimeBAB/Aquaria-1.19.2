@@ -87,11 +87,11 @@ public class GoologongiaEntity extends AbstractFish implements IAnimatable, Buck
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.goalSelector.addGoal(4,new GetNearSeagrass(Blocks.SEAGRASS, (PathfinderMob) this, 1.0D, (int) 1.0));
-<<<<<<< Updated upstream
-        this.goalSelector.addGoal(4, new GoToBottom(this, 1D, 1));
-=======
+//<<<<<<< Updated upstream
+ //       this.goalSelector.addGoal(4, new GoToBottom(this, 1D, 1));
+//=======
         this.goalSelector.addGoal(3,new GoToBottom(this,1.0,7));
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
         }
 
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {

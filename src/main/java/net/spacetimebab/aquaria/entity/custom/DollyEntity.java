@@ -32,6 +32,7 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import net.spacetimebab.aquaria.entity.ai.HungriGetFudGoal;
 import net.spacetimebab.aquaria.entity.variant.BungaritusVariant;
+import net.spacetimebab.aquaria.entity.variant.DollyVariant;
 import net.spacetimebab.aquaria.entity.variant.OrnithoprionVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -152,6 +153,110 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
 
         return PlayState.CONTINUE;
     }
+    
+    
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
+    }
 
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+
+
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.DOLPHIN_AMBIENT_WATER;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return SoundEvents.DOLPHIN_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.DOLPHIN_DEATH;
+    }
+    protected SoundEvent getFlopSound(){
+        return SoundEvents.SALMON_FLOP;
+    }
+
+    protected float getSoundVolume() {
+        return 0.5F;
+    }
+
+
+
+    @Override
+    public boolean fromBucket() {
+        return false;
+    }
+
+    @Override
+    public void setFromBucket(boolean p_148834_) {
+
+    }
+
+    @Override
+    public void saveToBucketTag(ItemStack p_148833_) {
+
+    }
+
+    @Override
+    public void loadFromBucketTag(CompoundTag p_148832_) {
+
+    }
+
+    @Override
+    public ItemStack getBucketItemStack() {
+        return null;
+    }
+
+
+
+
+    @Override
+    public SoundEvent getPickupSound() {
+        return SoundEvents.BUCKET_FILL_FISH;
+    }
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("Variant",this.getTypeVariant());
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+    }
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
+                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
+                                        @Nullable CompoundTag p_146750_) {
+        DollyVariant variant = Util.getRandom(DollyVariant.values(), this.random);
+        setVariant(variant);
+        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+    }
+
+    public DollyVariant getVariant() {
+        return DollyVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    private int getTypeVariant() {
+        return this.entityData.get(DATA_ID_TYPE_VARIANT);
+    }
+
+    private void setVariant(DollyVariant variant) {
+        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+    }
     
 }

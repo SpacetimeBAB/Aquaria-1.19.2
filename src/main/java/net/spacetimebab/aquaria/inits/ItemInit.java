@@ -182,34 +182,34 @@ public class ItemInit {
     //snared souls
     
     public static final RegistryObject<TooltipItem> SNARED_SPHENACANTHUS = ITEMS.register("soul_of_an_old_alien_wedgespine",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of an old alien wedgespine. It quivers in fear and its spines are raised."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_DOLLY = ITEMS.register("soul_of_a_familiar_long_snouted_face",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of a familiar long-snouted face. It perches upon its snare without fear, and its snout sniffs excitedly."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_GOOGOO = ITEMS.register("soul_of_gooloogongs_first_forman",
-            () -> new TooltipItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of Gooloogong's first forman. It twists ceaselessly, limbs seeming to emerge at every point."));
+            () -> new TooltipItem(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_DIPTERUS = ITEMS.register("soul_of_twinned_ancient_wings",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of twinned ancient wings. No movement apart from a drifting of fins can be felt."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_ORNITHOPRION = ITEMS.register("soul_of_a_sawbladed_avian",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of a sawbladed avian. Its maw twists violently with shredding strength."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_PHLEBOLEPIS = ITEMS.register("soul_of_scaly_flecks",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of scaly flecks. Shards of it dissipate into thin air, as if the soul is not simply one whole."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
         
     public static final RegistryObject<TooltipItem> SNARED_DIPLACANTHUS = ITEMS.register("soul_of_halved_tiny_thorns",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of halved tiny thorns, it boils with ridged protrusions and thorny flaps."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_BUNGARTIUS = ITEMS.register("soul_of_old_bungarts_lost_memory",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of Old Bungart's lost memory, its shearing jaws twist outwards and down upon your hand."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_CAMPBELLODUS = ITEMS.register("soul_of_campbells_proud_love",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of Campbell's proud love, it calmly awaits its partner's return."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static final RegistryObject<TooltipItem> SNARED_LAMIASPIS = ITEMS.register("soul_of_a_sharkfinned_bramble",
-            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC), "Soul of a sharkfinned bramble, it is indistinguishable in a pile of osteoderms and spines."));
+            () -> new TooltipItem(new TooltipItem.Properties().tab(CreativeModeTab.TAB_MISC)));
         
     
     public static final RegistryObject<Item> PHLEEB_SPAWN = ITEMS.register("phleeb_spawn",
