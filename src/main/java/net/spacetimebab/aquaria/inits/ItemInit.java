@@ -62,7 +62,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DOLLY_FLESH = ITEMS.register("dolly_flesh",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.RAW_DOLI)));
 
-    public static final RegistryObject<Item> DOLLY_FLESH_COOKED = ITEMS.register("dolly_flesh_cooked",
+    public static final RegistryObject<Item> DOLLY_FLESH_COOKED = ITEMS.register("cooked_doli",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.COOKED_DOLI)));
 
     public static final RegistryObject<Item> RAW_GOOLAGONGIA = ITEMS.register("raw_goolagongia",
