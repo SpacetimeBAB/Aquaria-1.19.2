@@ -38,8 +38,8 @@ public class OrnithoprionModel extends AnimatedGeoModel<OrnithoprionEntity> {
             body.setRotationZ(1.5708f);
         }
         else {
-            body.setRotationX(extraData.headPitch * (float)Math.PI / 150);
-            body.setRotationY(extraData.netHeadYaw * (float)Math.PI / 150);
+            body.setRotationX(extraData.headPitch * (float)Math.PI / 200);
+            body.setRotationY(extraData.netHeadYaw * (float)Math.PI / 200);
         }
     }
 }
