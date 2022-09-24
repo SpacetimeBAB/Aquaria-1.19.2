@@ -60,7 +60,7 @@ public class CampbellodusEntity extends AbstractFish implements IAnimatable, Buc
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 2.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 0.23f)
+                .add(Attributes.MOVEMENT_SPEED, (double) 1f)
                 .add(Attributes.ARMOR,5D);
     }
 
