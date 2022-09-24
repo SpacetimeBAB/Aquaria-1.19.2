@@ -16,7 +16,7 @@ public class PhleebModel extends AnimatedGeoModel<PhleebEntity> {
 
     @Override
     public ResourceLocation getModelResource(PhleebEntity object) {
-        return new ResourceLocation(Aquaria.MOD_ID, "geo/Phlebolepis.geo.json");
+        return new ResourceLocation(Aquaria.MOD_ID, "geo/phlebolepis.geo.json");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class PhleebModel extends AnimatedGeoModel<PhleebEntity> {
 
     @Override
     public ResourceLocation getAnimationResource(PhleebEntity animatable) {
-        return new ResourceLocation(Aquaria.MOD_ID, "animations/Phlebolepis.animation.json");
+        return new ResourceLocation(Aquaria.MOD_ID, "animations/phlebolepis.animation.json");
     }
 
     @Override

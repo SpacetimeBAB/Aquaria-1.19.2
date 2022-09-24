@@ -22,5 +22,6 @@ public class ClientModEvents {
         event.registerEntityRenderer(EntityInit.CAMPBELLODUS.get(), CampbellodusRenderer::new);
         event.registerEntityRenderer(EntityInit.ORNITHOPRION.get(), OrnithoprionRenderer::new);
         event.registerEntityRenderer(EntityInit.BUNGARITUS.get(), BungaritusRenderer::new);
+        event.registerEntityRenderer(EntityInit.PHLEEB.get(), PhleebRenderer::new);
     }
 }
