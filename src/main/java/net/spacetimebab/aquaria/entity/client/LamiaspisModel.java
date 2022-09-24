@@ -1,17 +1,23 @@
 package net.spacetimebab.aquaria.entity.client;
 
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.Model;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.spacetimebab.aquaria.Aquaria;
-import net.spacetimebab.aquaria.entity.custom.BungaritusEntity;
-import net.spacetimebab.aquaria.entity.custom.DipterusEntity;
 import net.spacetimebab.aquaria.entity.custom.LamiaspisEntity;
-import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
-public class LamiaspisModel extends AnimatedGeoModel<LamiaspisEntity> {
+import java.util.function.Function;
+
+public class LamiaspisModel<T extends LivingEntity> extends AnimatedGeoModel<LamiaspisEntity> {
 
     @Override
     public ResourceLocation getModelResource(LamiaspisEntity object) {
@@ -39,6 +45,31 @@ public class LamiaspisModel extends AnimatedGeoModel<LamiaspisEntity> {
         else {
             body.setRotationX(extraData.headPitch * (float)Math.PI / 180F);
             body.setRotationY(extraData.netHeadYaw * (float)Math.PI / 180F);
+        }
+    }
+    @OnlyIn(Dist.CLIENT)
+    public abstract class EntityModel<T extends Entity> extends Model {
+        public float attackTime;
+        public boolean riding;
+        public boolean young = true;
+
+        protected EntityModel() {
+            this(RenderType::entityCutoutNoCull);
+        }
+
+        protected EntityModel(Function<ResourceLocation, RenderType> p_102613_) {
+            super(p_102613_);
+        }
+
+        public abstract void setupAnim(T p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_, float p_102623_);
+
+        public void prepareMobModel(T p_102614_, float p_102615_, float p_102616_, float p_102617_) {
+        }
+
+        public void copyPropertiesTo(net.minecraft.client.model.EntityModel<T> p_102625_) {
+            p_102625_.attackTime = this.attackTime;
+            p_102625_.riding = this.riding;
+            p_102625_.young = this.young;
         }
     }
 }

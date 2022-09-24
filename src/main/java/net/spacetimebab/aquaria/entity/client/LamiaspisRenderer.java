@@ -7,14 +7,12 @@ import net.minecraft.Util;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.layers.EnderEyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.spacetimebab.aquaria.Aquaria;
-import net.spacetimebab.aquaria.entity.custom.DipterusEntity;
 import net.spacetimebab.aquaria.entity.custom.LamiaspisEntity;
-import net.spacetimebab.aquaria.entity.custom.SphenacantusEntity;
-import net.spacetimebab.aquaria.entity.variant.DipterusVariant;
 import net.spacetimebab.aquaria.entity.variant.LamiaspisVariant;
-import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 import software.bernie.geckolib3.renderers.geo.layer.LayerGlowingAreasGeo;
@@ -37,8 +35,9 @@ public class LamiaspisRenderer extends GeoEntityRenderer<LamiaspisEntity> {
 
 
     public LamiaspisRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new LamiaspisModel());
+        super(renderManager, new LamiaspisModel<LivingEntity>());
         this.shadowRadius = 0.5f;
+      //  this.addLayer(new LamiaspisGlowLayer<LamiaspisEntity>(this, new Resoru));
     }
 
     @Override
@@ -54,10 +53,5 @@ public class LamiaspisRenderer extends GeoEntityRenderer<LamiaspisEntity> {
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }
 
-    public class EmissiveRenderer extends LayerGlowingAreasGeo {
-
-        public EmissiveRenderer(GeoEntityRenderer renderer, Function funcGetCurrentTexture, Function funcGetCurrentModel, Function funcGetEmissiveRenderType) {
-            super(renderer, funcGetCurrentTexture, funcGetCurrentModel, funcGetEmissiveRenderType);
-        }
-    }
+    
 }
