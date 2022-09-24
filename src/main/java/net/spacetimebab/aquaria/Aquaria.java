@@ -1,6 +1,7 @@
 package net.spacetimebab.aquaria;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,6 +48,9 @@ public class Aquaria
     {
 
     }
+    //public static ResourceLocation rl(String s) {
+     //   return new ResourceLocation(MOD_ID, s);
+   // }
 
 
 

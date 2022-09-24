@@ -37,6 +37,8 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import java.util.List;
+
 public class LamiaspisEntity extends AbstractSchoolingFish implements IAnimatable, Bucketable {
     public LamiaspisEntity(EntityType<? extends AbstractSchoolingFish> p_27523_, Level p_27524_) {
         super(p_27523_, p_27524_);
@@ -53,7 +55,15 @@ public class LamiaspisEntity extends AbstractSchoolingFish implements IAnimatabl
                 .add(Attributes.MOVEMENT_SPEED, (double) 1.25D)
                 .add( Attributes.ARMOR, 4D);
     }
-    
+   // public String getEmissiveTexture(){
+       // final List<String> mountableData = getMountableData().emissiveTextures();
+       //final int textIndex = getEmissiveTextureIndex();
+       // if (textIndex == -1 || textIndex >= mountableData.size())return "transparent";
+       // return mountableData.get(getEmissiveTextureIndex());
+   // }
+   // private int getEmissiveTextureIndex(){
+     //   return this.entityData.get(EMISSIVE_TEXTURE);
+    //}
 	public void tick() {
 		super.tick();
 
