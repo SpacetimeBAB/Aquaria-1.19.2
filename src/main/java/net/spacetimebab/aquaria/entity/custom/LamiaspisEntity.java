@@ -99,7 +99,7 @@ public class LamiaspisEntity extends AbstractSchoolingFish implements IAnimatabl
     }
 
     private void addParticlesAroundSelf(ParticleOptions p_28338_) {
-        for(int i = 0; i < 7; ++i) {
+        for(int i = 0; i < 3; ++i) {
             double d0 = this.random.nextGaussian() * 0.01D;
             double d1 = this.random.nextGaussian() * 0.01D;
             double d2 = this.random.nextGaussian() * 0.01D;

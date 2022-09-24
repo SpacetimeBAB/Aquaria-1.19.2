@@ -97,7 +97,7 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.goalSelector.addGoal(4,new MeleeAttackGoal(this,2.0d,false));
         this.goalSelector.addGoal(3,new HungriGetFudGoal(this, LivingEntity.class,false));
-        this.goalSelector.addGoal(5,new GoToBottom(this,1.0d,1));
+        this.goalSelector.addGoal(5,new GoToBottom(this,1.0d,14));
     }
 
 

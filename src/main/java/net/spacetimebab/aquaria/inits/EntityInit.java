@@ -26,7 +26,7 @@ public class EntityInit {
     public static final RegistryObject<EntityType<DipterusEntity>> DIPTERUS =
             ENTITY_TYPES.register("dipterus",
                     () -> EntityType.Builder.of(DipterusEntity::new, MobCategory.WATER_CREATURE)
-                            .sized(0.75f, 0.75f)
+                            .sized(1f, 0.55f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "dipterus").toString()));
     public static final RegistryObject<EntityType<GoologongiaEntity>> GOOLOGONGIA =
             ENTITY_TYPES.register("goologongia",
@@ -55,13 +55,13 @@ public class EntityInit {
     public static final RegistryObject<EntityType<OrnithoprionEntity>> ORNITHOPRION =
             ENTITY_TYPES.register("ornithoprion",
                     () -> EntityType.Builder.of(OrnithoprionEntity::new, MobCategory.WATER_CREATURE)
-                            .sized(1f, 1f)
+                            .sized(2.3f, 0.75f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "ornithoprion").toString()));
 
     public static final RegistryObject<EntityType<BungaritusEntity>> BUNGARITUS =
             ENTITY_TYPES.register("bungaritus",
                     () -> EntityType.Builder.of(BungaritusEntity::new, MobCategory.WATER_CREATURE)
-                            .sized(1f, 1f)
+                            .sized(2f, 1f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "bungaritus").toString()));
 
     public static final RegistryObject<EntityType<PhleebEntity>> PHLEEB =

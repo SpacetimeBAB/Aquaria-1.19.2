@@ -34,6 +34,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
+import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.variant.DipterusVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -152,6 +153,7 @@ public class DipterusEntity extends AbstractFish implements IAnimatable, Bucketa
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.goalSelector.addGoal(2,new PanicGoal(this,10.0D));
         this.goalSelector.addGoal(0,new BreathAirGoal(this));
+        this.goalSelector.addGoal(3,new GoToBottom(this,1.0,14));
 
     }
 
