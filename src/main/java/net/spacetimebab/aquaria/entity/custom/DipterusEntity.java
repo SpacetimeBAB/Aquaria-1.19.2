@@ -141,7 +141,7 @@ public class DipterusEntity extends AbstractFish implements IAnimatable, Bucketa
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 4.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 0.75f)
+                .add(Attributes.MOVEMENT_SPEED, (double) 0.50f)
                 .add(Attributes.ATTACK_DAMAGE,5D);
     }
 

@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import net.spacetimebab.aquaria.entity.ai.GetNearSeagrass;
+import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.variant.GoologongiaVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -86,6 +87,7 @@ public class GoologongiaEntity extends AbstractFish implements IAnimatable, Buck
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.goalSelector.addGoal(4,new GetNearSeagrass(Blocks.SEAGRASS, (PathfinderMob) this, 1.0D, (int) 1.0));
+        this.goalSelector.addGoal(4, new GoToBottom(this, 1D, 1));
         }
 
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {

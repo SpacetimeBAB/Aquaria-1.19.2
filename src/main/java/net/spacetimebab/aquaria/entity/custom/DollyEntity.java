@@ -30,7 +30,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
-import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.ai.HungriGetFudGoal;
 import net.spacetimebab.aquaria.entity.variant.BungaritusVariant;
 import net.spacetimebab.aquaria.entity.variant.OrnithoprionVariant;
@@ -43,22 +42,19 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucketable {
-
-
-
+public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable {
 
 
 
 
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
-            SynchedEntityData.defineId(BungaritusEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(DollyEntity.class, EntityDataSerializers.INT);
 
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public BungaritusEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
+    public DollyEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
         super(p_30341_, p_30342_);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
 
@@ -67,8 +63,9 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
         this.lookControl = new SmoothSwimmingLookControl(this, 10);
         this.maxUpStep = 0.9f;
-
+        
     }
+    
     
 	public void tick() {
 		super.tick();
@@ -81,20 +78,21 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
 		}
 
 	}
-
+	
+	
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 35.0D)
+                .add(Attributes.MAX_HEALTH, 20.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double) 3D)
-                .add(Attributes.ATTACK_DAMAGE,5D)
-                .add(Attributes.ARMOR,10D);
+                .add(Attributes.ATTACK_DAMAGE,3D)
+                .add(Attributes.ARMOR,4D);
     }
-
+    
     @Override
     public boolean canBeLeashed(Player p_30346_) {
         return super.canBeLeashed(p_30346_);
     }
-
+    
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
@@ -102,28 +100,23 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.goalSelector.addGoal(4,new MeleeAttackGoal(this,2.0d,false));
         this.goalSelector.addGoal(3,new HungriGetFudGoal(this, LivingEntity.class,false));
-        this.goalSelector.addGoal(4, new GoToBottom(this, 1D, 1));
     }
-
-
 
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
         return new WaterBoundPathNavigation(this, waterBoundPathNavigation);
     }
-
-
+    
     public boolean attackable(LivingEntity pTarget) {
-        if (!(pTarget instanceof BungaritusEntity))
+        if (!(pTarget instanceof DollyEntity))
         return super.attackable();
         return true;
     }
-
+    
     public boolean doHurtTarget(Entity p_28319_) {
         boolean flag = p_28319_.hurt(DamageSource.mobAttack(this), (float)((int)this.getAttributeValue(Attributes.ATTACK_DAMAGE)));
         if (flag) {
             this.doEnchantDamageEffects(this, p_28319_);
             this.playSound(SoundEvents.DOLPHIN_ATTACK, 1.0F, 1.0F);
-            this.canDisableShield();
         }
 
         return flag;
@@ -138,24 +131,11 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         }
 
     }
-
+    
     public boolean canBreatheUnderwater() {
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (this.isInWater() && event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.bungartius.swim", true));
@@ -173,115 +153,5 @@ public class BungaritusEntity extends AbstractFish implements IAnimatable, Bucke
         return PlayState.CONTINUE;
     }
 
-
-    @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller",
-                0, this::predicate));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
-    }
-
-
-
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.DOLPHIN_AMBIENT_WATER;
-    }
-
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.DOLPHIN_HURT;
-    }
-
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.DOLPHIN_DEATH;
-    }
-    protected SoundEvent getFlopSound(){
-        return SoundEvents.SALMON_FLOP;
-    }
-
-
-
-
-
-    protected float getSoundVolume() {
-        return 0.5F;
-    }
-
-
-
-    @Override
-    public boolean fromBucket() {
-        return false;
-    }
-
-    @Override
-    public void setFromBucket(boolean p_148834_) {
-
-    }
-
-    @Override
-    public void saveToBucketTag(ItemStack p_148833_) {
-
-    }
-
-    @Override
-    public void loadFromBucketTag(CompoundTag p_148832_) {
-
-    }
-
-    @Override
-    public ItemStack getBucketItemStack() {
-        return null;
-    }
-
-
-
-
-    @Override
-    public SoundEvent getPickupSound() {
-        return SoundEvents.BUCKET_FILL_FISH;
-    }
-    @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
-
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        tag.putInt("Variant",this.getTypeVariant());
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
-    }
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
-                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
-                                        @Nullable CompoundTag p_146750_) {
-        BungaritusVariant variant = Util.getRandom(BungaritusVariant.values(), this.random);
-        setVariant(variant);
-        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
-    }
-
-    public BungaritusVariant getVariant() {
-        return BungaritusVariant.byId(this.getTypeVariant() & 255);
-    }
-
-    private int getTypeVariant() {
-        return this.entityData.get(DATA_ID_TYPE_VARIANT);
-    }
-
-    private void setVariant(BungaritusVariant variant) {
-        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
-    }
-
-
-
+    
 }
