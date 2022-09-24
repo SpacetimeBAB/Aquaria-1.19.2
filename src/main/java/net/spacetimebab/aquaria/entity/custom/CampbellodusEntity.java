@@ -81,8 +81,13 @@ public class CampbellodusEntity extends AbstractFish implements IAnimatable, Buc
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
+<<<<<<< Updated upstream
         this.goalSelector.addGoal(3,new PanicGoal(this,5.0D));
         this.goalSelector.addGoal(4, new GoToBottom(this, 1D, 1));
+=======
+        this.goalSelector.addGoal(2,new PanicGoal(this,5.0D));
+        this.goalSelector.addGoal(3,new GoToBottom(this,1.0,14));
+>>>>>>> Stashed changes
 
     }
 

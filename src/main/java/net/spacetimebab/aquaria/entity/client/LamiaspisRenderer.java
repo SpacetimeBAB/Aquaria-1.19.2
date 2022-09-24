@@ -53,5 +53,5 @@ public class LamiaspisRenderer extends GeoEntityRenderer<LamiaspisEntity> {
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }
 
-    
+
 }

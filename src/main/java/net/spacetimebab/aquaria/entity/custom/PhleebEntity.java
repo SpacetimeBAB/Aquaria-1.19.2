@@ -33,6 +33,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
+import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.variant.GoologongiaVariant;
 import net.spacetimebab.aquaria.entity.variant.LamiaspisVariant;
 import net.spacetimebab.aquaria.entity.variant.PhleebVariant;
@@ -87,6 +88,7 @@ public class PhleebEntity extends AbstractSchoolingFish implements IAnimatable, 
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.goalSelector.addGoal(3,new GoToBottom(this,1.0,14));
     }
 
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
