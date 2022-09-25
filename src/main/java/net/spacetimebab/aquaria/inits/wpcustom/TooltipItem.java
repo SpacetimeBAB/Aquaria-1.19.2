@@ -22,7 +22,7 @@ public class TooltipItem extends Item{
 	
 	ChatFormatting colour;
 
-	public TooltipItem(Properties pProperties) {
+	public TooltipItem(Properties pProperties, String text) {
 		super(pProperties);
 		// TODO Auto-generated constructor stub
 	}
@@ -38,6 +38,8 @@ public class TooltipItem extends Item{
 		this.colour = colour;
 		return this;
 	}
+	
+
 	
 	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable Level plevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
