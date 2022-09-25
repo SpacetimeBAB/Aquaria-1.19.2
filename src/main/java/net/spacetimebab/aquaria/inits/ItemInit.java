@@ -216,6 +216,14 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.PHLEEB, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    public static final RegistryObject<Item> DOLLY_SPAWN = ITEMS.register("dolly_spawn",
+            () -> new ForgeSpawnEggItem(EntityInit.DOLLY, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> LATIMERIA_SPAWN = ITEMS.register("latimeria_spawn",
+            () -> new ForgeSpawnEggItem(EntityInit.LATIMERIA, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
     //buckets
     
     

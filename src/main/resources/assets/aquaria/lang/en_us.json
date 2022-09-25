@@ -68,6 +68,9 @@
       
   "item.aquaria.ornithoprion_spawn_egg": "Ornithoprion Spawn Egg",
   "item.aquaria.bungaritus_spawn_egg": "Bungartius Spawn Egg",
+  "item.aquaria.phleeb_spawn": "Phlebolepis Spawn Egg",
+  "item.aquaria.dolly_spawn": "Dolichorhynchops Spawn Egg",
+  "item.aquaria.latimeria_spawn": "West Indian Coelacanth Spawn Egg",
 
 
 
@@ -82,6 +85,8 @@
   "entity.aquaria.bungaritus": "Bungartius",
   "entity.aquaria.phleeb": "Phlebolepis",  
   "entity.aquaria.dolly": "Dolichorhynchops",  
+  "entity.aquaria.latimeria": "West Indian Coelacanth",  
+  
   
   "block.aquaria.resurrection_altar": "Resurrection Altar"
 
