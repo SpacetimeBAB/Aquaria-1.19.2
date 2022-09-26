@@ -231,6 +231,26 @@ public class ItemInit {
             () -> new ItemModFishBucket(EntityInit.PHLEEB, () -> Fluids.WATER, Items.BUCKET, false,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
     
+    public static final RegistryObject<Item> DIPLACANTHUS_BUCKET = ITEMS.register("diplacanthus_bucket",
+            () -> new ItemModFishBucket(EntityInit.DIPLACANTHUS, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+    
+    public static final RegistryObject<Item> CAMPBELLODUS_BUCKET = ITEMS.register("campbellodus_bucket",
+            () -> new ItemModFishBucket(EntityInit.CAMPBELLODUS, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+    
+    public static final RegistryObject<Item> LAMIASPIS_BUCKET = ITEMS.register("lamiaspis_bucket",
+            () -> new ItemModFishBucket(EntityInit.LAMIASPIS, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+    
+    public static final RegistryObject<Item> DIPTERUS_BUCKET = ITEMS.register("dipterus_bucket",
+            () -> new ItemModFishBucket(EntityInit.DIPTERUS, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+    
+    public static final RegistryObject<Item> LATIMERIA_BUCKET = ITEMS.register("latimeria_bucket",
+            () -> new ItemModFishBucket(EntityInit.LATIMERIA, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+    
     
     //weapons and ammo(imma figure out magic damage tomorrow)
     

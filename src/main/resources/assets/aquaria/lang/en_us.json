@@ -65,7 +65,13 @@
   "item.aquaria.raw_phlebolepis": "Raw Phlebolepis", 
   
   "item.aquaria.phleeb_bucket": "Phlebolepis Bucket", 
-      
+  "item.aquaria.latimeria_bucket": "West Indian Coelacanth Bucket", 
+  "item.aquaria.campbellodus_bucket": "Campbellodus Bucket", 
+  "item.aquaria.lamiaspis_bucket": "Lamiaspis Bucket", 
+  "item.aquaria.dipterus_bucket": "Dipterus Bucket", 
+  "item.aquaria.diplacanthus_bucket": "Diplacanthus Bucket", 
+                
+        
   "item.aquaria.ornithoprion_spawn_egg": "Ornithoprion Spawn Egg",
   "item.aquaria.bungaritus_spawn_egg": "Bungartius Spawn Egg",
   "item.aquaria.phleeb_spawn": "Phlebolepis Spawn Egg",
