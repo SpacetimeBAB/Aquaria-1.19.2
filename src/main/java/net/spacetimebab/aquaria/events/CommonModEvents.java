@@ -20,6 +20,9 @@ public class CommonModEvents {
         event.put(EntityInit.ORNITHOPRION.get(), OrnithoprionEntity.attributes().build());
         event.put(EntityInit.BUNGARITUS.get(), BungaritusEntity.attributes().build());
         event.put(EntityInit.PHLEEB.get(), PhleebEntity.attributes().build());
+        event.put(EntityInit.DOLLY.get(), DollyEntity.attributes().build());
+        event.put(EntityInit.LATIMERIA.get(), LatimeriaEntity.attributes().build());
+
 
 
 

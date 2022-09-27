@@ -23,5 +23,7 @@ public class ClientModEvents {
         event.registerEntityRenderer(EntityInit.ORNITHOPRION.get(), OrnithoprionRenderer::new);
         event.registerEntityRenderer(EntityInit.BUNGARITUS.get(), BungaritusRenderer::new);
         event.registerEntityRenderer(EntityInit.PHLEEB.get(), PhleebRenderer::new);
+        event.registerEntityRenderer(EntityInit.DOLLY.get(), DollyRenderer::new);
+        event.registerEntityRenderer(EntityInit.LATIMERIA.get(), LatimeriaRenderer::new);
     }
 }
