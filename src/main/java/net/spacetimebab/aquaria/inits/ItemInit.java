@@ -261,6 +261,49 @@ public class ItemInit {
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
     
     
+    //sacs n eggs
+    
+    public static final RegistryObject<Item> SPHEN_SAC = ITEMS.register("sphenacanthus_sac",
+            () -> new ForgeSpawnEggItem(EntityInit.SPHENACANTHUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> BUNGA_SAC = ITEMS.register("bungartius_sac",
+            () -> new ForgeSpawnEggItem(EntityInit.BUNGARITUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> DOLLY_SAC = ITEMS.register("dolly_sac",
+            () -> new ForgeSpawnEggItem(EntityInit.DOLLY, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> ORNITHOPRION_SAC = ITEMS.register("ornithoprion_sac",
+            () -> new ForgeSpawnEggItem(EntityInit.ORNITHOPRION, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
+    public static final RegistryObject<Item> CAMPBELLODUS_SAC = ITEMS.register("campbellodus_sac",
+            () -> new ForgeSpawnEggItem(EntityInit.CAMPBELLODUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> GOOGOO_EGGS = ITEMS.register("googoo_eggs",
+            () -> new ForgeSpawnEggItem(EntityInit.SPHENACANTHUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> DIPTERUS_EGGS = ITEMS.register("dipterus_eggs",
+            () -> new ForgeSpawnEggItem(EntityInit.DIPTERUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> PHLEEB_EGGS = ITEMS.register("phleeb_eggs",
+            () -> new ForgeSpawnEggItem(EntityInit.PHLEEB, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> LAMIASPIS_EGGS = ITEMS.register("lamiaspis_eggs",
+            () -> new ForgeSpawnEggItem(EntityInit.LAMIASPIS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    public static final RegistryObject<Item> DIPLACANTHUS_EGGS = ITEMS.register("dipla_eggs",
+            () -> new ForgeSpawnEggItem(EntityInit.DIPTERUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
+    
     public static class Tiers { 	
     	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of(ItemInit.SOUL_SHARD.get()));
     }

@@ -77,9 +77,19 @@
   "item.aquaria.phleeb_spawn": "Phlebolepis Spawn Egg",
   "item.aquaria.dolly_spawn": "Dolichorhynchops Spawn Egg",
   "item.aquaria.latimeria_spawn": "West Indian Coelacanth Spawn Egg",
-
-
-
+  
+  
+  "item.aquaria.phleeb_eggs": "Phlebolepis Eggs",
+  "item.aquaria.dipterus_eggs": "Dipterus Eggs",
+  "item.aquaria.lamiaspis_eggs": "Lamiaspis Eggs",
+  "item.aquaria.googoo_eggs": "Gooloogongia Eggs",
+  "item.aquaria.dipla_eggs": "Diplacanthus Eggs",
+  
+  "item.aquaria.sphen_sac": "Sphenacanthus Sac",
+  "item.aquaria.ornithoprion_sac": "Ornithoprion Sac",
+  "item.aquaria.bungartius_sac": "Bungartius Sac",
+  "item.aquaria.campbellodus_sac": "Campbellodus Sac",
+  "item.aquaria.dolly_sac": "Dolichorhynchops Sac",
 
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",

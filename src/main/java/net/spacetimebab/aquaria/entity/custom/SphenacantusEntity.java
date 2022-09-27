@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -21,7 +22,9 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.AbstractFish;
+import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -29,7 +32,10 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
+import net.spacetimebab.aquaria.inits.EntityInit;
 import net.spacetimebab.aquaria.inits.ItemInit;
+
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -43,14 +49,14 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static net.spacetimebab.aquaria.inits.ItemInit.SPHENA_BUCKET;
 
-public class SphenacantusEntity extends AbstractFish implements IAnimatable, Bucketable {
+public class SphenacantusEntity extends AbstractSchoolingFish implements IAnimatable, Bucketable {
 
 	private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData
 			.defineId(SphenacantusEntity.class, EntityDataSerializers.INT);
 
 	private AnimationFactory factory = new AnimationFactory(this);
 
-	public SphenacantusEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
+	public SphenacantusEntity(EntityType<? extends AbstractSchoolingFish> p_30341_, Level p_30342_) {
 		super(p_30341_, p_30342_);
 
 		// tilt control segment
@@ -235,4 +241,9 @@ public class SphenacantusEntity extends AbstractFish implements IAnimatable, Buc
 	private void setVariant(SphenacanthusVariant variant) {
 		this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
 	}
+
+	public @NotNull EntityType<SphenacantusEntity> getBreedOffspring(ServerLevel p_146743_) {
+		return EntityInit.SPHENACANTHUS.get();
+	}
+
 }
