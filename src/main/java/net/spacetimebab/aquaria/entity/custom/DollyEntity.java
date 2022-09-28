@@ -64,8 +64,8 @@ import java.util.UUID;
 public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable, OwnableEntity {
 
 
-    private static final EntityDataAccessor<Boolean> SITTING =
-            SynchedEntityData.defineId(DollyEntity.class, EntityDataSerializers.BOOLEAN);
+   // private static final EntityDataAccessor<Boolean> SITTING =
+      //      SynchedEntityData.defineId(DollyEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
@@ -172,18 +172,19 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.swim", true));
             return PlayState.CONTINUE;
         }
-        if (!this.isInWater() && !this.isSitting()) {
+        if (!this.isInWater() //* !this.isSitting()*/
+                 ) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.crawl", true));
             return PlayState.CONTINUE;
         }
-        if (this.isSitting() && !this.isOnGround()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idle", true));
-            return PlayState.CONTINUE;
-        }
-        if (this.isSitting() && this.isOnGround()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idleland", true));
-            return PlayState.CONTINUE;
-        }
+       // if (this.isSitting() && !this.isOnGround()) {
+         //   event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idle", true));
+           // return PlayState.CONTINUE;
+        //}
+        //if (this.isSitting() && this.isOnGround()) {
+          //  event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idleland", true));
+            //return PlayState.CONTINUE;
+        //}
 
 
         return PlayState.CONTINUE;
@@ -295,9 +296,9 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
 
 
 
-    public boolean isSitting() {
-        return this.entityData.get(SITTING);
-    }
+   // public boolean isSitting() {
+     //   return this.entityData.get(SITTING);
+    //}
 
     @Override
     public Team getTeam() {

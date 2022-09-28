@@ -4,8 +4,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-public class ResurrectionAltarBlock {
+public class ResurrectionAltarBlock extends Block {
 
-    public ResurrectionAltarBlock(BlockBehaviour.Properties noOcclusion) {
+
+    public ResurrectionAltarBlock(Properties p_49795_) {
+        super(p_49795_);
     }
 }

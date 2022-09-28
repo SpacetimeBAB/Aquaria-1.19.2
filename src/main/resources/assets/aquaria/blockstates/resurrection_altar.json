@@ -1,18 +1,18 @@
 {
   "variants": {
 "facing=north": {
-"model": "aquaria:block/resurrection_altar"
+"model": "aquaria:block/resaltar"
 },
 "facing=south": {
-"model": "aquaria:block/resurrection_altar",
+"model": "aquaria:block/resaltar",
 "y": 180
 },
 "facing=west": {
-"model": "aquaria:block/resurrection_altar",
+"model": "aquaria:block/resaltar",
 "y": 270
 },
 "facing=east": {
-"model": "aquaria:block/resurrection_altar",
+"model": "aquaria:block/resaltar",
 "y": 90
 }
 }

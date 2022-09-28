@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.Aquaria;
+import net.spacetimebab.aquaria.block.custom.ResurrectionAltarBlock;
 
 import java.util.function.Supplier;
 
@@ -20,8 +21,8 @@ public class BlockInit {
 
 
 
-    public static final RegistryObject<Block> RESURRECTION_ALTAR = registerBlock("resualtar",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+    public static final RegistryObject<ResurrectionAltarBlock> RESURRECTION_ALTAR =  registerBlock("resaltar",
+            () -> new ResurrectionAltarBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(4f).requiresCorrectToolForDrops().noOcclusion()), CreativeModeTab.TAB_MISC);
 
 
