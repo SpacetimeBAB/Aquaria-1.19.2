@@ -1,16 +1,12 @@
 package net.spacetimebab.aquaria.entity.custom;
 
 import net.minecraft.Util;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -27,27 +23,20 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.animal.AbstractFish;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Team;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.spacetimebab.aquaria.entity.Fishes;
+import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.ai.HungriGetFudGoal;
-import net.spacetimebab.aquaria.entity.variant.BungaritusVariant;
 import net.spacetimebab.aquaria.entity.variant.DollyVariant;
-import net.spacetimebab.aquaria.entity.variant.OrnithoprionVariant;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -57,15 +46,13 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import java.rmi.server.UID;
-import java.util.Optional;
 import java.util.UUID;
 
-public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable, OwnableEntity {
+public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketable, OwnableEntity {
 
 
-   // private static final EntityDataAccessor<Boolean> SITTING =
-      //      SynchedEntityData.defineId(DollyEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> SITTING =
+           SynchedEntityData.defineId(DollyEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
@@ -74,8 +61,8 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public DollyEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
-        super(p_30341_, p_30342_);
+    public DollyEntity(EntityType<? extends TamableAnimal> entityType, Level level) {
+        super(entityType, level);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
 
         //tilt control segment
@@ -121,9 +108,56 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 2.0d, false));
         this.goalSelector.addGoal(3, new HungriGetFudGoal(this, LivingEntity.class, false));
         this.goalSelector.addGoal(5, new BreathAirGoal(this));
+        this.goalSelector.addGoal(4,new GoToBottom(this,1.0,14));
+        this.goalSelector.addGoal(1, new SitWhenOrderedToGoal(this));
 
     }
 
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        Item iteme = itemstack.getItem();
+
+        Item itemForTaming = Items.COD;
+
+
+        if (iteme == itemForTaming && !isTame()) {
+            if (this.level.isClientSide) {
+                return InteractionResult.CONSUME;
+            } else {
+                if (!player.getAbilities().instabuild) {
+                    itemstack.shrink(1);
+                }
+
+                if (!ForgeEventFactory.onAnimalTame(this, player)) {
+                    if (!this.level.isClientSide) {
+                        super.tame(player);
+                        this.navigation.recomputePath();
+                        this.setTarget(null);
+                        this.level.broadcastEntityEvent(this, (byte) 7);
+                        setSitting(true);
+                    }
+                }
+                return InteractionResult.SUCCESS;
+            }
+        }
+
+        if (isTame() && !this.level.isClientSide && hand == InteractionHand.MAIN_HAND) {
+            setSitting(!isSitting());
+            return InteractionResult.SUCCESS;
+        }
+
+        if (itemstack.getItem() == itemForTaming) {
+            return InteractionResult.PASS;
+        }
+
+        return super.mobInteract(player, hand);
+    }
+    public void setSitting(boolean sitting) {
+        this.entityData.set(SITTING, sitting);
+        this.setOrderedToSit(sitting);
+    }
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
         return new AmphibiousPathNavigation(this, waterBoundPathNavigation);
     }
@@ -172,19 +206,18 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.swim", true));
             return PlayState.CONTINUE;
         }
-        if (!this.isInWater() //* !this.isSitting()*/
-                 ) {
+        if (!this.isInWater() && !this.isSitting()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.crawl", true));
             return PlayState.CONTINUE;
         }
-       // if (this.isSitting() && !this.isOnGround()) {
-         //   event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idle", true));
-           // return PlayState.CONTINUE;
-        //}
-        //if (this.isSitting() && this.isOnGround()) {
-          //  event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idleland", true));
-            //return PlayState.CONTINUE;
-        //}
+        if (this.isSitting() && !this.isOnGround()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idle", true));
+            return PlayState.CONTINUE;
+        }
+        if (this.isSitting() && this.isOnGround()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idleland", true));
+            return PlayState.CONTINUE;
+        }
 
 
         return PlayState.CONTINUE;
@@ -271,14 +304,14 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
-       // tag.putBoolean("isSitting", this.isSitting());
+        tag.putBoolean("isSitting", this.isSitting());
     }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
-      //  this.entityData.define(SITTING, false);
+        this.entityData.define(SITTING, false);
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
@@ -296,9 +329,9 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
 
 
 
-   // public boolean isSitting() {
-     //   return this.entityData.get(SITTING);
-    //}
+    public boolean isSitting() {
+        return this.entityData.get(SITTING);
+    }
 
     @Override
     public Team getTeam() {
@@ -323,9 +356,8 @@ public class DollyEntity extends AbstractFish implements IAnimatable, Bucketable
         return null;
     }
 
-    @Nullable
     @Override
-    public Entity getOwner() {
+    public LivingEntity getOwner() {
         return null;
     }
 }
