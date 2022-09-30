@@ -7,20 +7,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
@@ -33,22 +28,18 @@ import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.variant.GoologongiaVariant;
 import net.spacetimebab.aquaria.entity.variant.LamiaspisVariant;
+import net.spacetimebab.aquaria.entity.variant.LatimeriaVariant;
+import net.spacetimebab.aquaria.entity.variant.NeoceratodusVariant;
 import net.spacetimebab.aquaria.entity.variant.PhleebVariant;
 import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
-import net.spacetimebab.aquaria.inits.ItemInit;
 
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -59,9 +50,9 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketable {
+public class NeoceratodusEntity extends AbstractSchoolingFish implements IAnimatable, Bucketable {
 	
-    public PhleebEntity(EntityType<? extends TamableAnimal> p_27523_, Level p_27524_) {
+    public NeoceratodusEntity(EntityType<? extends AbstractSchoolingFish> p_27523_, Level p_27524_) {
         super(p_27523_, p_27524_);
         
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
@@ -84,13 +75,13 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
 	}
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
-            SynchedEntityData.defineId(LamiaspisEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(NeoceratodusEntity.class, EntityDataSerializers.INT);
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 3.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 1.0D)
-                .add( Attributes.ARMOR, 10D);
+                .add(Attributes.MAX_HEALTH, 8.0D)
+                .add(Attributes.MOVEMENT_SPEED, (double) 1D)
+                .add( Attributes.ARMOR, 2D);
     }
     
     
@@ -98,7 +89,6 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
         this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.goalSelector.addGoal(3,new GoToBottom(this,1.0,14));
     }
 
@@ -164,12 +154,12 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
 	private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
 		if (this.isInWater() && event.isMoving()) {
 			event.getController()
-					.setAnimation(new AnimationBuilder().addAnimation("animation.phleeb.swim", true));
+					.setAnimation(new AnimationBuilder().addAnimation("animation.neoceratodus.swim", true));
 			return PlayState.CONTINUE;
 		}
 		if (!this.isInWater()) {
 			event.getController()
-					.setAnimation(new AnimationBuilder().addAnimation("animation.phleeb.bounce", true));
+					.setAnimation(new AnimationBuilder().addAnimation("animation.neoceratodus.flop", true));
 			return PlayState.CONTINUE;
 		}
 
@@ -242,48 +232,24 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
             MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
             @Nullable CompoundTag p_146750_) {
-    	PhleebVariant variant = Util.getRandom(PhleebVariant.values(), this.random);
+    	NeoceratodusVariant variant = Util.getRandom(NeoceratodusVariant.values(), this.random);
     	setVariant(variant);
     	return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
-    public PhleebVariant getVariant() {
-    	return PhleebVariant.byId(this.getTypeVariant() & 255);
+    public NeoceratodusVariant getVariant() {
+    	return NeoceratodusVariant.byId(this.getTypeVariant() & 255);
     }
 
     private int getTypeVariant() {
     	return this.entityData.get(DATA_ID_TYPE_VARIANT);
     }
 
-    private void setVariant(PhleebVariant variant) {
+    private void setVariant(NeoceratodusVariant variant) {
     	this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
 
-
-	public RegistryObject<Item> getBreedOffspring(ServerLevel p_146743_, ItemEntity p_146744_) {
-		return ItemInit.PHLEEB_EGGS;
-	}
-	
-	@Override
-	public boolean isFood(ItemStack pStack) {
-		
-		return pStack.getItem() == Items.SEAGRASS;
-	}
-
-	@Override
-	public InteractionResult mobInteract (Player player, InteractionHand hand) {
-		ItemStack itemstack = player.getItemInHand(hand);
-		Item item = itemstack.getItem();
-		
-		if (isFood(itemstack)) {
-			return super.mobInteract(player, hand);
-		}
-		
-		return null;
-		
-	}
     
 
 }
-
 

@@ -124,6 +124,12 @@ public class ItemInit {
     public static final RegistryObject<Item> BUNGARTIUS_RAW = ITEMS.register("bungartius_raw",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.BUNGARTIUS_RAW)));
     
+    public static final RegistryObject<Item> NEOCERATODUS_RAW = ITEMS.register("neoceratodus_raw",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.NEOCERATODUS_RAW)));
+    
+    public static final RegistryObject<Item> NEOCERATODUS_COOKED = ITEMS.register("neoceratodus_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.NEOCERATODUS_COOKED)));
+    
     
     //crystals
     
@@ -224,6 +230,10 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.LATIMERIA, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    public static final RegistryObject<Item> NEOCERATODUS_SPAWN = ITEMS.register("neoceratodus_spawn",
+            () -> new ForgeSpawnEggItem(EntityInit.NEOCERATODUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    
     //buckets
     
     
@@ -251,6 +261,10 @@ public class ItemInit {
             () -> new ItemModFishBucket(EntityInit.LATIMERIA, () -> Fluids.WATER, Items.BUCKET, false,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
     
+    public static final RegistryObject<Item> NEOCERATODUS_BUCKET = ITEMS.register("neoceratodus_bucket",
+            () -> new ItemModFishBucket(EntityInit.NEOCERATODUS, () -> Fluids.WATER, Items.BUCKET, false,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1)));
+    
     
     //weapons and ammo(imma figure out magic damage tomorrow)
     
@@ -267,7 +281,7 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.SPHENACANTHUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
-    public static final RegistryObject<Item> BUNGA_SAC = ITEMS.register("bungartius_sac",
+    public static final RegistryObject<Item> BUNGA_SAC = ITEMS.register("bunga_sac",
             () -> new ForgeSpawnEggItem(EntityInit.BUNGARITUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
@@ -303,6 +317,13 @@ public class ItemInit {
             () -> new ForgeSpawnEggItem(EntityInit.DIPTERUS, 0xDFCC8F, 0x2D2611,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
+    public static final RegistryObject<Item> LATIMERIA_EGGS = ITEMS.register("latimeria_eggs",
+            () -> new ForgeSpawnEggItem(EntityInit.LATIMERIA, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
+    public static final RegistryObject<Item> NEOCERATODUS_EGGS = ITEMS.register("neoceratodus_eggs",
+            () -> new ForgeSpawnEggItem(EntityInit.NEOCERATODUS, 0xDFCC8F, 0x2D2611,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     
     public static class Tiers { 	
     	public static final Tier SOUL = new ForgeTier(2, 1000, 2F, 2, 500, null, () -> Ingredient.of(ItemInit.SOUL_SHARD.get()));

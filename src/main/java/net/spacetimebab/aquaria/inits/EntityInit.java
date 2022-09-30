@@ -81,7 +81,12 @@ public class EntityInit {
                     () -> EntityType.Builder.of(LatimeriaEntity::new, MobCategory.WATER_CREATURE)
                             .sized(0.25f, 0.25f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "latimeria").toString()));
-
+    
+    public static final RegistryObject<EntityType<NeoceratodusEntity>> NEOCERATODUS =
+            ENTITY_TYPES.register("neoceratodus",
+                    () -> EntityType.Builder.of(NeoceratodusEntity::new, MobCategory.WATER_CREATURE)
+                            .sized(0.25f, 0.25f)
+                            .build(new ResourceLocation(Aquaria.MOD_ID, "neoceratodus").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

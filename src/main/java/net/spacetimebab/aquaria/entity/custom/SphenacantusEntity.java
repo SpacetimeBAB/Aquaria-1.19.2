@@ -11,6 +11,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -26,7 +28,10 @@ import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
@@ -49,14 +54,14 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static net.spacetimebab.aquaria.inits.ItemInit.SPHENA_BUCKET;
 
-public class SphenacantusEntity extends AbstractSchoolingFish implements IAnimatable, Bucketable {
+public class SphenacantusEntity extends TamableAnimal implements IAnimatable, Bucketable {
 
 	private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData
 			.defineId(SphenacantusEntity.class, EntityDataSerializers.INT);
 
 	private AnimationFactory factory = new AnimationFactory(this);
 
-	public SphenacantusEntity(EntityType<? extends AbstractSchoolingFish> p_30341_, Level p_30342_) {
+	public SphenacantusEntity(EntityType<? extends TamableAnimal> p_30341_, Level p_30342_) {
 		super(p_30341_, p_30342_);
 
 		// tilt control segment
@@ -97,6 +102,7 @@ public class SphenacantusEntity extends AbstractSchoolingFish implements IAnimat
 		this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 10));
 		this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+		this.targetSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.COD), false));
 	}
 
 	protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
@@ -242,8 +248,30 @@ public class SphenacantusEntity extends AbstractSchoolingFish implements IAnimat
 		this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
 	}
 
-	public @NotNull EntityType<SphenacantusEntity> getBreedOffspring(ServerLevel p_146743_) {
-		return EntityInit.SPHENACANTHUS.get();
+
+	@Override
+	public boolean isFood(ItemStack pStack) {
+		
+		return pStack.getItem() == Items.COD;
+	}
+
+	@Override
+	public AgeableMob getBreedOffspring(ServerLevel serverlevel, AgeableMob mob) {
+			return EntityInit.SPHENACANTHUS.get().create(serverlevel);
+
+	}
+	
+	@Override
+	public InteractionResult mobInteract (Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		
+		if (isFood(itemstack)) {
+			return super.mobInteract(player, hand);
+		}
+		
+		return null;
+		
 	}
 
 }

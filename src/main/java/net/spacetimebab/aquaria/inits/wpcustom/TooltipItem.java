@@ -44,12 +44,9 @@ public class TooltipItem extends Item{
 	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable Level plevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 			
-			if(Screen.hasShiftDown()) {
-				pTooltipComponents.add(Component.literal(this.text).withStyle(ChatFormatting.ITALIC).withStyle(this.colour));
+			pTooltipComponents.add(Component.literal(this.text).withStyle(ChatFormatting.ITALIC).withStyle(this.colour));
 				
-			}else {	
-				pTooltipComponents.add(Component.literal("Hold shift to observe.").withStyle(ChatFormatting.GOLD));
-			}
+
 			
 			super.appendHoverText(pStack, plevel, pTooltipComponents, pIsAdvanced);
 	}

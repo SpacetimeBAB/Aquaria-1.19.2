@@ -46,6 +46,13 @@ public class PhleebRenderer extends GeoEntityRenderer<PhleebEntity> {
     public RenderType getRenderType(PhleebEntity animatable, float partialTicks, PoseStack stack,
                                     MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
                                     ResourceLocation textureLocation) {
+    	
+    	if (animatable.isBaby()) {
+    		stack.scale(0.3F, 0.3F, 0.3F);
+    	} else {
+            stack.scale(1F, 1F, 1F);
+    	}
+    	
         stack.scale(1F, 1F, 1F);
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }

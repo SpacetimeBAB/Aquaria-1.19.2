@@ -63,6 +63,7 @@
   "item.aquaria.lamiaspis_cooked": "Cooked Lamiaspis", 
   "item.aquaria.cooked_phlebolepis": "Cooked Phlebolepis", 
   "item.aquaria.raw_phlebolepis": "Raw Phlebolepis", 
+  "item.aquaria.raw_neoceratodus": "Raw Australian Lungfish", 
   
   "item.aquaria.phleeb_bucket": "Phlebolepis Bucket", 
   "item.aquaria.latimeria_bucket": "West Indian Coelacanth Bucket", 
@@ -70,21 +71,24 @@
   "item.aquaria.lamiaspis_bucket": "Lamiaspis Bucket", 
   "item.aquaria.dipterus_bucket": "Dipterus Bucket", 
   "item.aquaria.diplacanthus_bucket": "Diplacanthus Bucket", 
-                
+  "item.aquaria.neoceratodus_bucket": "Australian Lungfish Bucket", 
+                        
         
   "item.aquaria.ornithoprion_spawn_egg": "Ornithoprion Spawn Egg",
   "item.aquaria.bungaritus_spawn_egg": "Bungartius Spawn Egg",
   "item.aquaria.phleeb_spawn": "Phlebolepis Spawn Egg",
   "item.aquaria.dolly_spawn": "Dolichorhynchops Spawn Egg",
   "item.aquaria.latimeria_spawn": "West Indian Coelacanth Spawn Egg",
-  
+  "item.aquaria.neoceratodus_spawn": "Australian Lungfish Spawn Egg",  
   
   "item.aquaria.phleeb_eggs": "Phlebolepis Eggs",
   "item.aquaria.dipterus_eggs": "Dipterus Eggs",
   "item.aquaria.lamiaspis_eggs": "Lamiaspis Eggs",
   "item.aquaria.googoo_eggs": "Gooloogongia Eggs",
   "item.aquaria.dipla_eggs": "Diplacanthus Eggs",
-  
+  "item.aquaria.latimeria_eggs": "West Indian Coelacanth Eggs",
+  "item.aquaria.neoceratodus_eggs": "Australian Lungfish Eggs",
+    
   "item.aquaria.sphen_sac": "Sphenacanthus Sac",
   "item.aquaria.ornithoprion_sac": "Ornithoprion Sac",
   "item.aquaria.bungartius_sac": "Bungartius Sac",
@@ -93,7 +97,7 @@
 
   "entity.aquaria.sphenacantus": "Sphenacanthus",
   "entity.aquaria.dipterus": "Dipterus",
-  "entity.aquaria.goolagongia": "Goolagongia",
+  "entity.aquaria.goolagongia": "Gooloogongia",
   "entity.aquaria.lamiaspis": "Lamiaspis",
   "entity.aquaria.diplacanthus": "Diplacanthus",
   "entity.aquaria.campbellodus": "Campbellodus",
@@ -102,7 +106,7 @@
   "entity.aquaria.phleeb": "Phlebolepis",  
   "entity.aquaria.dolly": "Dolichorhynchops",  
   "entity.aquaria.latimeria": "West Indian Coelacanth",  
-  
+  "entity.aquaria.neoceratodus": "Australian Lungfish",    
   
   "block.aquaria.resurrection_altar": "Resurrection Altar"
 

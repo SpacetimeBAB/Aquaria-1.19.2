@@ -44,7 +44,13 @@ public class SphenacantusRenderer extends GeoEntityRenderer<SphenacantusEntity> 
     public RenderType getRenderType(SphenacantusEntity animatable, float partialTicks, PoseStack stack,
                                     MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
                                     ResourceLocation textureLocation) {
-        stack.scale(1F, 1F, 1F);
+    	
+    	if (animatable.isBaby()) {
+    		stack.scale(0.3F, 0.3F, 0.3F);
+    	} else {
+            stack.scale(1F, 1F, 1F);
+    	}
+    	
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }
 }
