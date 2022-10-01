@@ -1,0 +1,19 @@
+{
+  "variants": {
+"facing=north": {
+"model": "aquaria:block/soul_crucible"
+},
+"facing=south": {
+"model": "aquaria:block/soul_crucible",
+"y": 180
+},
+"facing=west": {
+"model": "aquaria:block/soul_crucible",
+"y": 270
+},
+"facing=east": {
+"model": "aquaria:block/soul_crucible",
+"y": 90
+}
+}
+}
