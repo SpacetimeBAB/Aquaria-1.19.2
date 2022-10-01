@@ -1,9 +1,11 @@
 package net.spacetimebab.aquaria.inits;
 
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,7 +25,15 @@ public class BlockInit {
 
     public static final RegistryObject<ResurrectionAltarBlock> RESURRECTION_ALTAR =  registerBlock("resaltar",
             () -> new ResurrectionAltarBlock(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(4f).requiresCorrectToolForDrops().noOcclusion()), CreativeModeTab.TAB_MISC);
+                    .strength(4f).requiresCorrectToolForDrops().noOcclusion()), CreativeModeTab.TAB_DECORATIONS);
+    
+    public static final RegistryObject<DropExperienceBlock> HAUNTED_SOIL = registerBlock("haunted_soil",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.DIRT)
+                    .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    
+    public static final RegistryObject<DropExperienceBlock> HAUNTED_SAND = registerBlock("haunted_sand",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.SAND)
+                    .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
 
 

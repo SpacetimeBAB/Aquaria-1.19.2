@@ -129,7 +129,12 @@ public class ItemInit {
     
     public static final RegistryObject<Item> NEOCERATODUS_COOKED = ITEMS.register("neoceratodus_cooked",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.NEOCERATODUS_COOKED)));
+
+    public static final RegistryObject<Item> LATIMERIA_RAW = ITEMS.register("latimeria_raw",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.LATIMERIA_RAW)));
     
+    public static final RegistryObject<Item> LATIMERIA_COOKED = ITEMS.register("latimeria_cooked",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD).food(FoodInit.LATIMERIA_COOKED)));
     
     //crystals
     

@@ -62,8 +62,11 @@
   "item.aquaria.lamiaspis_raw": "Raw Lamiaspis",
   "item.aquaria.lamiaspis_cooked": "Cooked Lamiaspis", 
   "item.aquaria.cooked_phlebolepis": "Cooked Phlebolepis", 
-  "item.aquaria.raw_phlebolepis": "Raw Phlebolepis", 
+  "item.aquaria.raw_phlebolepis": "Raw Phlebolepis",
+  "item.aquaria.cooked_neoceratodus": "Cooked Australian Lungfish",    
   "item.aquaria.raw_neoceratodus": "Raw Australian Lungfish", 
+  "item.aquaria.raw_latimeria": "Raw West Indian Coelacanth",  
+  "item.aquaria.cooked_latimeria": "Cooked West Indian Coelacanth",    
   
   "item.aquaria.phleeb_bucket": "Phlebolepis Bucket", 
   "item.aquaria.latimeria_bucket": "West Indian Coelacanth Bucket", 
@@ -107,7 +110,9 @@
   "entity.aquaria.dolly": "Dolichorhynchops",  
   "entity.aquaria.latimeria": "West Indian Coelacanth",  
   "entity.aquaria.neoceratodus": "Australian Lungfish",    
-  
+
+  "block.aquaria.haunted_sand": "Haunted Sand",
+  "block.aquaria.haunted_soil": "Haunted Soil",  
   "block.aquaria.resurrection_altar": "Resurrection Altar"
 
 

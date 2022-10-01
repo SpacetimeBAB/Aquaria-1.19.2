@@ -38,4 +38,7 @@ public class FoodInit extends Foods {
 
     public static final FoodProperties NEOCERATODUS_RAW = (new FoodProperties.Builder()).nutrition(2).saturationMod(2F).meat().build();
     public static final FoodProperties NEOCERATODUS_COOKED = (new FoodProperties.Builder()).nutrition(5).saturationMod(3F).meat().build();
+    
+    public static final FoodProperties LATIMERIA_RAW = (new FoodProperties.Builder()).nutrition(3).saturationMod(1F).meat().build();
+    public static final FoodProperties LATIMERIA_COOKED = (new FoodProperties.Builder()).nutrition(6).saturationMod(4F).meat().build();
 }
