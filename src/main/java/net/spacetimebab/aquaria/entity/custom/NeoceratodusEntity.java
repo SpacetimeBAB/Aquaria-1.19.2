@@ -159,7 +159,7 @@ public class NeoceratodusEntity extends AbstractSchoolingFish implements IAnimat
 		}
 		if (!this.isInWater()) {
 			event.getController()
-					.setAnimation(new AnimationBuilder().addAnimation("animation.neoceratodus.flop", true));
+					.setAnimation(new AnimationBuilder().addAnimation("animation.neoceratodus.crawl", true));
 			return PlayState.CONTINUE;
 		}
 
