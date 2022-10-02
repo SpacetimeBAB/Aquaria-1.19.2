@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.phlebolepis.swim": {
+		"animation.phleeb.swim": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -22,7 +22,7 @@
 				}
 			}
 		},
-		"animation.Phlebolepis.bounce": {
+		"animation.phleeb.bounce": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {

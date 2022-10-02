@@ -103,6 +103,8 @@ public class SphenacantusEntity extends TamableAnimal implements IAnimatable, Bu
 		this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
 		this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
 		this.targetSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(Items.COD), false));
+		this.goalSelector.addGoal(1,new BreedGoal(this,2.0));
+		this.goalSelector.addGoal(1,new FollowParentGoal(this, 1.0));
 	}
 
 	protected PathNavigation createNavigation(Level waterBoundPathNavigation) {

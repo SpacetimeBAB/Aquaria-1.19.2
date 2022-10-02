@@ -3,12 +3,12 @@ package net.spacetimebab.aquaria.inits;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.Aquaria;
-import net.spacetimebab.aquaria.entity.client.DipterusRenderer;
 import net.spacetimebab.aquaria.entity.custom.*;
 
 public class EntityInit {
@@ -66,7 +66,7 @@ public class EntityInit {
 
     public static final RegistryObject<EntityType<PhleebEntity>> PHLEEB =
             ENTITY_TYPES.register("phleeb",
-                    () -> EntityType.Builder.of(PhleebEntity::new, MobCategory.WATER_CREATURE)
+                    () -> EntityType.Builder.of((EntityType<PhleebEntity> aSuper, Level aSuper1) -> new PhleebEntity(aSuper, aSuper1), MobCategory.WATER_CREATURE)
                             .sized(0.25f, 0.25f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "phleeb").toString()));
     

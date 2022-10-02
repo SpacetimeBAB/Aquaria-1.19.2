@@ -2,7 +2,6 @@ package net.spacetimebab.aquaria.entity.custom;
 
 import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -15,23 +14,18 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
 import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.animal.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -42,12 +36,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.RegistryObject;
 import net.spacetimebab.aquaria.entity.ai.GoToBottom;
-import net.spacetimebab.aquaria.entity.variant.GoologongiaVariant;
-import net.spacetimebab.aquaria.entity.variant.LamiaspisVariant;
 import net.spacetimebab.aquaria.entity.variant.PhleebVariant;
-import net.spacetimebab.aquaria.entity.variant.SphenacanthusVariant;
 import net.spacetimebab.aquaria.inits.ItemInit;
 
 import org.jetbrains.annotations.Nullable;
@@ -60,10 +50,13 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketable {
+    private ItemInit itemInit;
+
+
 	
-    public PhleebEntity(EntityType<? extends TamableAnimal> p_27523_, Level p_27524_) {
-        super(p_27523_, p_27524_);
-        
+    public PhleebEntity(EntityType<? extends TamableAnimal> aSuper, Level aSuper1) {
+        super(aSuper, aSuper1);
+
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         
         this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
@@ -84,7 +77,7 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
 	}
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
-            SynchedEntityData.defineId(LamiaspisEntity.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(PhleebEntity.class, EntityDataSerializers.INT);
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
@@ -100,6 +93,7 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
         this.goalSelector.addGoal(3,new GoToBottom(this,1.0,14));
+        this.goalSelector.addGoal(1,new BreedGoal(this,1.0));
     }
 
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
@@ -253,6 +247,7 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
         return null;
     }
 
+
     public PhleebVariant getVariant() {
     	return PhleebVariant.byId(this.getTypeVariant() & 255);
     }
@@ -266,9 +261,9 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
     }
 
 
-	public RegistryObject<Item> getBreedOffspring(ServerLevel p_146743_, ItemEntity p_146744_) {
-		return ItemInit.PHLEEB_EGGS;
-	}
+	public Entity getBreedOffspring(ServerLevel p_146743_, ItemEntity p_146744_) {
+		return this.spawnAtLocation(ItemInit.PHLEEB_EGGS.get());
+    }
 	
 	@Override
 	public boolean isFood(ItemStack pStack) {
