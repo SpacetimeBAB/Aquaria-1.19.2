@@ -247,6 +247,12 @@ public class PhleebEntity extends TamableAnimal implements IAnimatable, Bucketab
     	return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
+    @Nullable
+    @Override
+    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
+        return null;
+    }
+
     public PhleebVariant getVariant() {
     	return PhleebVariant.byId(this.getTypeVariant() & 255);
     }

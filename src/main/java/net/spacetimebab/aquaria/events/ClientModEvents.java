@@ -25,5 +25,6 @@ public class ClientModEvents {
         event.registerEntityRenderer(EntityInit.PHLEEB.get(), PhleebRenderer::new);
         event.registerEntityRenderer(EntityInit.DOLLY.get(), DollyRenderer::new);
         event.registerEntityRenderer(EntityInit.LATIMERIA.get(), LatimeriaRenderer::new);
+        event.registerEntityRenderer(EntityInit.NEOCERATODUS.get(),NeoceratodusRenderer::new);
     }
 }

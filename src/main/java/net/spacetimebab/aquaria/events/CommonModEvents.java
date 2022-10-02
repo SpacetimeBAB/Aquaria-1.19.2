@@ -22,6 +22,8 @@ public class CommonModEvents {
         event.put(EntityInit.PHLEEB.get(), PhleebEntity.attributes().build());
         event.put(EntityInit.DOLLY.get(), DollyEntity.attributes().build());
         event.put(EntityInit.LATIMERIA.get(), LatimeriaEntity.attributes().build());
+        event.put(EntityInit.NEOCERATODUS.get(), NeoceratodusEntity.attributes().build());
+
 
 
 

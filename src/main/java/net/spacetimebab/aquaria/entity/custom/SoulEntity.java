@@ -46,7 +46,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class SoulEntity extends LivingEntity implements IAnimatable {
+public class SoulEntity extends PathfinderMob implements IAnimatable {
 
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT=
             SynchedEntityData.defineId(SoulEntity.class, EntityDataSerializers.INT);
@@ -54,7 +54,7 @@ public class SoulEntity extends LivingEntity implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public SoulEntity(EntityType<? extends LivingEntity> entityType, Level level) {
+    public SoulEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
 
     }
@@ -83,17 +83,14 @@ public class SoulEntity extends LivingEntity implements IAnimatable {
     }
 
 
-    @Override
-    public void registerControllers1(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller",
-                0, this::predicate));
-    }
 
 
 	@Override
 	public void registerControllers(AnimationData data) {
 		// TODO Auto-generated method stub
-		
+		data.addAnimationController(new AnimationController(this, "controller",
+				0, this::predicate));
+
 	}
 
 	@Override
