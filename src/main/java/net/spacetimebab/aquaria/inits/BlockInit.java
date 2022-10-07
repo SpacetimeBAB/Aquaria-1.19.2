@@ -35,6 +35,10 @@ public class BlockInit {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.SAND)
                     .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_BUILDING_BLOCKS);
     
+    public static final RegistryObject<Block> CRYSTAL_SMALL = registerBlock("soul_crystal_small",
+            () -> new Block(BlockBehaviour.Properties.of(Material.GLASS)
+                    .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_DECORATIONS);
+    
     public static final RegistryObject<Block> SOUL_CRUCIBLE = registerBlock("soul_crucible",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_DECORATIONS);
