@@ -114,7 +114,11 @@
   "block.aquaria.haunted_sand": "Haunted Sand",
   "block.aquaria.haunted_soil": "Haunted Soil",  
   "block.aquaria.soul_crucible": "Soul Crucible",  
+  "block.aquaria.soul_crystal_small": "Small Soul Crystal Cluster",
+  "block.aquaria.soul_crystal_med": "Medium Soul Crystal Cluster",
+  "block.aquaria.soul_crystal_large": "Large Soul Crystal Cluster",
   "block.aquaria.resurrection_altar": "Resurrection Altar"
+
 
 
 }

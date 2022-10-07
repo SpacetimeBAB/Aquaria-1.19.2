@@ -6,10 +6,13 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -25,7 +28,9 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
@@ -33,6 +38,8 @@ import net.minecraft.world.phys.Vec3;
 import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.ai.HungriGetFudGoal;
 import net.spacetimebab.aquaria.entity.variant.OrnithoprionVariant;
+import net.spacetimebab.aquaria.inits.EntityInit;
+
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -42,7 +49,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Bucketable {
+public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bucketable {
 
 
 
@@ -57,7 +64,7 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public OrnithoprionEntity(EntityType<? extends AbstractFish> p_30341_, Level p_30342_) {
+    public OrnithoprionEntity(EntityType<? extends TamableAnimal> p_30341_, Level p_30342_) {
         super(p_30341_, p_30342_);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
@@ -275,6 +282,32 @@ public class OrnithoprionEntity extends AbstractFish implements IAnimatable, Buc
     private void setVariant(OrnithoprionVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
+    
+	@Override
+	public boolean isFood(ItemStack pStack) {
+		
+		return pStack.getItem() == Items.NAUTILUS_SHELL;
+	}
+
+	@Override
+	public AgeableMob getBreedOffspring(ServerLevel serverlevel, AgeableMob mob) {
+			return EntityInit.ORNITHOPRION.get().create(serverlevel);
+
+	}
+	
+	@Override
+	public InteractionResult mobInteract (Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+		
+		if (isFood(itemstack)) {
+			return super.mobInteract(player, hand);
+		}
+		
+		return null;
+		
+	}
+
 
 
 

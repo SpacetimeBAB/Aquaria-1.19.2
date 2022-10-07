@@ -39,6 +39,14 @@ public class BlockInit {
             () -> new Block(BlockBehaviour.Properties.of(Material.GLASS)
                     .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_DECORATIONS);
     
+    public static final RegistryObject<Block> CRYSTAL_MID = registerBlock("soul_crystal_mid",
+            () -> new Block(BlockBehaviour.Properties.of(Material.GLASS)
+                    .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_DECORATIONS);
+    
+    public static final RegistryObject<Block> CRYSTAL_LARGE = registerBlock("soul_crystal_large",
+            () -> new Block(BlockBehaviour.Properties.of(Material.GLASS)
+                    .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_DECORATIONS);
+    
     public static final RegistryObject<Block> SOUL_CRUCIBLE = registerBlock("soul_crucible",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2f).requiresCorrectToolForDrops()), CreativeModeTab.TAB_DECORATIONS);

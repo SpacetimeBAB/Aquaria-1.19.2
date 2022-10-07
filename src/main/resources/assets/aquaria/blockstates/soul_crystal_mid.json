@@ -1,0 +1,6 @@
+{ 
+	"variants": { 
+	
+		"": {"model": "aquaria:block/soul_crystal_block"}
+	}
+}

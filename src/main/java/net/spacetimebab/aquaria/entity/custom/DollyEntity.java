@@ -37,6 +37,8 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.spacetimebab.aquaria.entity.ai.GoToBottom;
 import net.spacetimebab.aquaria.entity.ai.HungriGetFudGoal;
 import net.spacetimebab.aquaria.entity.variant.DollyVariant;
+import net.spacetimebab.aquaria.inits.EntityInit;
+
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -119,7 +121,12 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
         ItemStack itemstack = player.getItemInHand(hand);
         Item iteme = itemstack.getItem();
 
-        Item itemForTaming = Items.COD;
+        Item itemForTaming = Items.COD_BUCKET;
+        
+
+		if (isFood(itemstack)) {
+			return super.mobInteract(player, hand);
+		}
 
 
         if (iteme == itemForTaming && !isTame()) {
@@ -322,11 +329,6 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
         return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
-    @Nullable
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return null;
-    }
-
 
 
     public boolean isSitting() {
@@ -360,4 +362,17 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
     public LivingEntity getOwner() {
         return null;
     }
+    
+	@Override
+	public boolean isFood(ItemStack pStack) {
+		
+		return pStack.getItem() == Items.COD_BUCKET;
+	}
+
+	@Override
+	public AgeableMob getBreedOffspring(ServerLevel serverlevel, AgeableMob mob) {
+			return EntityInit.DOLLY.get().create(serverlevel);
+
+	}
+	
 }

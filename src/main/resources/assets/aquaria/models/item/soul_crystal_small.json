@@ -1,4 +1,6 @@
-{ 
-	"parent": "aquaria:block/soul_crystal_small"
-
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aquaria:item/soul_crystal_small"
+  }
 }
