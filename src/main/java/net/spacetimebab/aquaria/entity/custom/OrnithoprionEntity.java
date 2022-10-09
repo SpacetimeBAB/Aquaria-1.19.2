@@ -2,6 +2,7 @@ package net.spacetimebab.aquaria.entity.custom;
 
 import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -69,18 +70,35 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
         this.lookControl = new SmoothSwimmingLookControl(this, 10);
+        this.setXRot(0.0F);
+       //experimental code^
     }
     
 	public void tick() {
 		super.tick();
 
-		if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
+	/*	if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
 			Vec3 vec3 = this.getViewVector(0.0F);
 			float f = Mth.cos(this.getYRot() * ((float) Math.PI / 300F)) * 0.3F;
 			float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 300F)) * 0.3F;
 
 		}
+		
+		try the one below first
+		
+		*/
+        if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
+            Vec3 vec3 = this.getViewVector(0.0F);
+            float f = Mth.cos(this.getYRot() * ((float)Math.PI / 180F)) * 0.3F;
+            float f1 = Mth.sin(this.getYRot() * ((float)Math.PI / 180F)) * 0.3F;
+            float f2 = 1.2F - this.random.nextFloat() * 0.7F;
 
+            for(int i = 0; i < 2; ++i) {
+               this.level.addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * (double)f2 + (double)f, this.getY() - vec3.y, this.getZ() - vec3.z * (double)f2 + (double)f1, 0.0D, 0.0D, 0.0D);
+               this.level.addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * (double)f2 - (double)f, this.getY() - vec3.y, this.getZ() - vec3.z * (double)f2 - (double)f1, 0.0D, 0.0D, 0.0D);
+            }
+         }
+//experimental code^
 	}
 
 
@@ -202,6 +220,21 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
     protected SoundEvent getFlopSound(){
         return SoundEvents.SALMON_FLOP;
     }
+    
+    public void travel(Vec3 p_28383_) {
+        if (this.isEffectiveAi() && this.isInWater()) {
+           this.moveRelative(this.getSpeed(), p_28383_);
+           this.move(MoverType.SELF, this.getDeltaMovement());
+           this.setDeltaMovement(this.getDeltaMovement().scale(0.9D));
+           if (this.getTarget() == null) {
+              this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
+           }
+        } else {
+           super.travel(p_28383_);
+        }
+
+     }
+    //experimental code^
 
 
 
