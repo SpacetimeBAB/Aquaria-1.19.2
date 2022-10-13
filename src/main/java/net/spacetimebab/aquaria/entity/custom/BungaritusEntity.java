@@ -92,7 +92,7 @@ public class BungaritusEntity extends TamableAnimal implements IAnimatable, Buck
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 35.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 3D)
+                .add(Attributes.MOVEMENT_SPEED, (double) 0.8D)
                 .add(Attributes.ATTACK_DAMAGE,5D)
                 .add(Attributes.ARMOR,10D);
     }

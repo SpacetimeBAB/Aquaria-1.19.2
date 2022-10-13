@@ -71,7 +71,7 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
         this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
         this.lookControl = new SmoothSwimmingLookControl(this, 10);
         this.setXRot(0.0F);
-       //experimental code^
+       //experimental code^(this one line right above)
     }
     
 	public void tick() {
@@ -106,7 +106,7 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 30.0D)
-                .add(Attributes.MOVEMENT_SPEED, (double) 2.5D)
+                .add(Attributes.MOVEMENT_SPEED, (double) 1.2D)
                 .add(Attributes.ATTACK_DAMAGE,5D);
     }
 
@@ -221,6 +221,7 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
         return SoundEvents.SALMON_FLOP;
     }
     
+    /*
     public void travel(Vec3 p_28383_) {
         if (this.isEffectiveAi() && this.isInWater()) {
            this.moveRelative(this.getSpeed(), p_28383_);
@@ -234,6 +235,7 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
         }
 
      }
+    */
     //experimental code^
 
 
