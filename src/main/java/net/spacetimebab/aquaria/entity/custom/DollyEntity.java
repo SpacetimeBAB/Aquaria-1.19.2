@@ -213,6 +213,14 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.swim", true));
             return PlayState.CONTINUE;
         }
+        if (this.isInWater() && !event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idle", true));
+            return PlayState.CONTINUE;
+        }
+        if (!this.isInWater() && !event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.idleland", true));
+            return PlayState.CONTINUE;
+        }
         if (!this.isInWater() && !this.isSitting()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.Dolichorhynchops.crawl", true));
             return PlayState.CONTINUE;
