@@ -113,10 +113,9 @@ public class BungaritusEntity extends TamableAnimal implements IAnimatable, Buck
 //<<<<<<< Updated upstream
 //        this.goalSelector.addGoal(4, new GoToBottom(this, 1D, 1));
 //=======
-        this.goalSelector.addGoal(5,new GoToBottom(this,1.0,14));
 //>>>>>>> Stashed changes
 //=======
-        this.goalSelector.addGoal(5,new GoToBottom(this,1.0,14));
+        this.goalSelector.addGoal(5,new GoToBottom(this,1.0,5));
 //>>>>>>> Stashed changes
     }
 

@@ -73,7 +73,7 @@ public class EntityInit {
     public static final RegistryObject<EntityType<DollyEntity>> DOLLY =
             ENTITY_TYPES.register("dolly",
                     () -> EntityType.Builder.of(DollyEntity::new, MobCategory.WATER_CREATURE)
-                            .sized(0.25f, 0.25f)
+                            .sized(2.5f, 0.90f)
                             .build(new ResourceLocation(Aquaria.MOD_ID, "dolly").toString()));
     
     public static final RegistryObject<EntityType<LatimeriaEntity>> LATIMERIA =

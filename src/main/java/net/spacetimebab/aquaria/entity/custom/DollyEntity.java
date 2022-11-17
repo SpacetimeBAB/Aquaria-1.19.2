@@ -1,6 +1,8 @@
 package net.spacetimebab.aquaria.entity.custom;
 
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -24,13 +26,16 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Team;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -50,7 +55,13 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.UUID;
 
-public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketable, OwnableEntity {
+public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketable, OwnableEntity, ItemSteerable {
+
+    private static final EntityDataAccessor<Integer> DATA_BOOST_TIME = SynchedEntityData.defineId(DollyEntity.class, EntityDataSerializers.INT);
+
+    private static final EntityDataAccessor<Boolean> DATA_SADDLE_ID = SynchedEntityData.defineId(DollyEntity.class, EntityDataSerializers.BOOLEAN);
+
+    private final ItemBasedSteering steering = new ItemBasedSteering(this.entityData, DATA_BOOST_TIME, DATA_SADDLE_ID);
 
 
     private static final EntityDataAccessor<Boolean> SITTING =
@@ -88,6 +99,27 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
 
     }
 
+    @javax.annotation.Nullable
+    public Entity getControllingPassenger() {
+        Entity entity = this.getFirstPassenger();
+        return entity != null && this.canBeControlledBy(entity) ? entity : null;
+    }
+
+    private boolean canBeControlledBy(Entity p_218248_) {
+        if (this.isTame() && p_218248_ instanceof Player player) {
+            return player.getMainHandItem().is(Items.CARROT_ON_A_STICK) || player.getOffhandItem().is(Items.CARROT_ON_A_STICK);
+        } else {
+            return false;
+        }
+    }
+    public void onSyncedDataUpdated(EntityDataAccessor<?> p_29480_) {
+        if (DATA_BOOST_TIME.equals(p_29480_) && this.level.isClientSide) {
+            this.steering.onSynced();
+        }
+
+        super.onSyncedDataUpdated(p_29480_);
+    }
+
 
     public static AttributeSupplier.Builder attributes() {
         return Mob.createMobAttributes()
@@ -99,7 +131,7 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
 
     @Override
     public boolean canBeLeashed(Player p_30346_) {
-        return super.canBeLeashed(p_30346_);
+        return false;
     }
 
     protected void registerGoals() {
@@ -116,6 +148,7 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
     }
 
 
+
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
@@ -127,6 +160,13 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
 		if (isFood(itemstack)) {
 			return super.mobInteract(player, hand);
 		}
+        if (!this.isVehicle() && !player.isSecondaryUseActive()) {
+            if (!this.level.isClientSide) {
+                player.startRiding(this);
+            }
+
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
+        }
 
 
         if (iteme == itemForTaming && !isTame()) {
@@ -150,10 +190,10 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
             }
         }
 
-        if (isTame() && !this.level.isClientSide && hand == InteractionHand.MAIN_HAND) {
-            setSitting(!isSitting());
-            return InteractionResult.SUCCESS;
-        }
+      //  if (isTame() && !this.level.isClientSide && hand == InteractionHand.MAIN_HAND) {
+           // setSitting(!isSitting());
+         //   return InteractionResult.SUCCESS;
+       // }
 
         if (itemstack.getItem() == itemForTaming) {
             return InteractionResult.PASS;
@@ -164,6 +204,49 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
     public void setSitting(boolean sitting) {
         this.entityData.set(SITTING, sitting);
         this.setOrderedToSit(sitting);
+    }
+    public void travel(Vec3 p_29506_) {
+        this.travel(this, this.steering, p_29506_);
+    }
+
+    public float getSteeringSpeed() {
+        return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 0.225F;
+    }
+
+    public void travelWithInput(Vec3 p_29482_) {
+        super.travel(p_29482_);
+    }
+
+    public boolean boost() {
+        return this.steering.boost(this.getRandom());
+    }
+    public Vec3 getDismountLocationForPassenger(LivingEntity p_29487_) {
+        Direction direction = this.getMotionDirection();
+        if (direction.getAxis() == Direction.Axis.Y) {
+            return super.getDismountLocationForPassenger(p_29487_);
+        } else {
+            int[][] aint = DismountHelper.offsetsForDirection(direction);
+            BlockPos blockpos = this.blockPosition();
+            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+            for(Pose pose : p_29487_.getDismountPoses()) {
+                AABB aabb = p_29487_.getLocalBoundsForPose(pose);
+
+                for(int[] aint1 : aint) {
+                    blockpos$mutableblockpos.set(blockpos.getX() + aint1[0], blockpos.getY(), blockpos.getZ() + aint1[1]);
+                    double d0 = this.level.getBlockFloorHeight(blockpos$mutableblockpos);
+                    if (DismountHelper.isBlockFloorValid(d0)) {
+                        Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos$mutableblockpos, d0);
+                        if (DismountHelper.canDismountTo(this.level, p_29487_, aabb.move(vec3))) {
+                            p_29487_.setPose(pose);
+                            return vec3;
+                        }
+                    }
+                }
+            }
+
+            return super.getDismountLocationForPassenger(p_29487_);
+        }
     }
     protected PathNavigation createNavigation(Level waterBoundPathNavigation) {
         return new AmphibiousPathNavigation(this, waterBoundPathNavigation);
@@ -309,6 +392,7 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+        this.steering.readAdditionalSaveData(tag);
 
 
 
@@ -320,6 +404,7 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getTypeVariant());
         tag.putBoolean("isSitting", this.isSitting());
+        this.steering.addAdditionalSaveData(tag);
     }
 
     @Override
@@ -327,6 +412,8 @@ public class DollyEntity extends TamableAnimal implements IAnimatable, Bucketabl
         super.defineSynchedData();
         this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
         this.entityData.define(SITTING, false);
+        this.entityData.define(DATA_SADDLE_ID, false);
+        this.entityData.define(DATA_BOOST_TIME, 0);
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
