@@ -16,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.spacetimebab.aquaria.Aquaria;
 
+
 public class TooltipItem extends Item{
 	
 	String text;
@@ -44,13 +45,12 @@ public class TooltipItem extends Item{
 	@Override
 	public void appendHoverText(ItemStack pStack, @Nullable Level plevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 			
-		if(Screen.hasShiftDown()) {
+		if(plevel.isClientSide && Screen.hasShiftDown()) {
 			pTooltipComponents.add(Component.literal(text).withStyle(ChatFormatting.ITALIC).withStyle(this.colour));
 		}else {	
 			pTooltipComponents.add(Component.literal("Hold shift to observe.").withStyle(ChatFormatting.GOLD));
 		}
 
-			
 			super.appendHoverText(pStack, plevel, pTooltipComponents, pIsAdvanced);
 	}
 	
