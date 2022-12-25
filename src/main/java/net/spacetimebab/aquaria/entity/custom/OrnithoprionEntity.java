@@ -52,12 +52,8 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bucketable {
 	
-    public float prevYRot;
-    public float deltaYRot;
-    public float adjustYaw;
-    public float adjustmentYaw;
-    public float prevSetYaw;
-    public float setYaw;
+    public float tailYaw;
+    public float prevTailYaw;
     
     public final float entityYawAdjustment = 0.30F;
 
@@ -72,7 +68,8 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
         this.lookControl = new SmoothSwimmingLookControl(this, 10);
-        this.adjustYaw = entityYawAdjustment;
+        prevTailYaw = this.getYRot();
+        tailYaw = this.getYRot();
         this.setXRot(0.0F);
     }
     
@@ -82,22 +79,13 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
 		//Start of deltaYaw modification
 		
         if (level.isClientSide && this.isInWater()){
-
-            deltaYRot = this.getYRot() - prevYRot;
-            //Store the previous yaw value, so we can use it next tick to calculate deltaYaw...
-            prevYRot = this.getYRot();
-        	
-            prevSetYaw = setYaw;
-
-            if (adjustYaw > deltaYRot) {
-                adjustYaw = adjustYaw - adjustmentYaw;
-                adjustYaw = Math.max(adjustYaw, deltaYRot);
-            } else if (adjustYaw < deltaYRot) {
-                adjustYaw = adjustYaw + adjustmentYaw;
-                adjustYaw = Math.min(adjustYaw, deltaYRot);
-            }
-            setYaw = (adjustYaw * (Mth.PI / 180.0F));
+            tailYaw = Mth.approachDegrees(this.tailYaw, yBodyRot, 7);
+        } else {
+        	tailYaw = 0;
         }
+        
+        prevTailYaw = tailYaw;
+        tailYaw = this.getYRot();
         //end of deltaYaw modification
 
 	/*	if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
@@ -108,6 +96,7 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
 		}
 		
 		try the one below first
+		*/
 		
 
         if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
@@ -121,7 +110,7 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
                this.level.addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * (double)f2 - (double)f, this.getY() - vec3.y, this.getZ() - vec3.z * (double)f2 - (double)f1, 0.0D, 0.0D, 0.0D);
             }
          }
-         		*/
+         		
 //experimental code^
 	}
 
