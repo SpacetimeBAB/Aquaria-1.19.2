@@ -54,6 +54,11 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
 	
     public float tailYaw;
     public float prevTailYaw;
+    public float deltaYRot;
+    public float prevYRot = this.getYRot();
+    public float prevSetYaw;
+    public float setYaw;
+    public float averageYRotSpeed = 0;
     
     public final float entityYawAdjustment = 0.30F;
 
@@ -76,28 +81,26 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
 	public void tick() {
 		super.tick();
 		
-		//Start of deltaYaw modification
-		
-        if (level.isClientSide && this.isInWater()){
-            tailYaw = Mth.approachDegrees(this.tailYaw, yBodyRot, 7);
+        /*if (level.isClientSide && this.isInWater()){
+
+            deltaYRot = this.getYRot() - prevYRot;
+            prevYRot = this.getYRot();
+            prevSetYaw = setYaw;
+
+            if (adjustYaw > deltaYRot) {
+                adjustYaw = adjustYaw - adjustmentYaw;
+                adjustYaw = Math.max(adjustYaw, deltaYRot);
+            } else if (adjustYaw < deltaYRot) {
+                adjustYaw = adjustYaw + adjustmentYaw;
+                adjustYaw = Math.min(adjustYaw, deltaYRot);
+            }
+            setYaw = (adjustYaw * (Mth.PI / 180.0F));
         } else {
-        	tailYaw = 0;
-        }
-        
-        prevTailYaw = tailYaw;
-        tailYaw = this.getYRot();
-        //end of deltaYaw modification
+        	deltaYRot = 0;
+        }*/
 
-	/*	if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
-			Vec3 vec3 = this.getViewVector(0.0F);
-			float f = Mth.cos(this.getYRot() * ((float) Math.PI / 300F)) * 0.3F;
-			float f1 = Mth.sin(this.getYRot() * ((float) Math.PI / 300F)) * 0.3F;
-
-		}
-		
-		try the one below first
-		*/
-		
+        deltaYRot = this.getYRot() - prevYRot;
+        prevYRot = this.getYRot();
 
         if (this.level.isClientSide && this.isInWater() && this.getDeltaMovement().lengthSqr() > 0.03D) {
             Vec3 vec3 = this.getViewVector(0.0F);
@@ -110,8 +113,6 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
                this.level.addParticle(ParticleTypes.DOLPHIN, this.getX() - vec3.x * (double)f2 - (double)f, this.getY() - vec3.y, this.getZ() - vec3.z * (double)f2 - (double)f1, 0.0D, 0.0D, 0.0D);
             }
          }
-         		
-//experimental code^
 	}
 
 
@@ -174,19 +175,6 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
     public boolean canBreatheUnderwater() {
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (this.isInWater() && event.isMoving()) {
@@ -349,11 +337,10 @@ public class OrnithoprionEntity extends TamableAnimal implements IAnimatable, Bu
 		Item item = itemstack.getItem();
 		
 		if (isFood(itemstack)) {
-			return super.mobInteract(player, hand);
-		}
-		
-		return null;
-		
+            return super.mobInteract(player, hand);
+        }
+		return InteractionResult.FAIL;
+
 	}
 	
 

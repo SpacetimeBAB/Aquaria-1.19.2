@@ -32,18 +32,23 @@ public class OrnithoprionModel extends AnimatedGeoModel<OrnithoprionEntity> {
         IBone body = this.getAnimationProcessor().getBone("bodycore");
         EntityModelData extraData = (EntityModelData) customPredicate.getExtraDataOfType(EntityModelData.class).get(0);
 
-        float multiplier = 1.4F;
-        
-        float partialTick = entity.tickCount;
-        float yaw = entity.yBodyRotO + (entity.yBodyRot - entity.yBodyRotO) * partialTick;
-        float rotate = Mth.wrapDegrees(entity.prevTailYaw + (entity.tailYaw - entity.prevTailYaw) * partialTick - yaw) * 0.1F;
-        
-        this.getAnimationProcessor().getBone("tail").setRotationY(rotate * multiplier);
-        this.getAnimationProcessor().getBone("tail2").setRotationY(rotate * multiplier);
-        this.getAnimationProcessor().getBone("tail3").setRotationY(rotate * multiplier);
-        this.getAnimationProcessor().getBone("tail4").setRotationY(rotate * multiplier);
-        this.getAnimationProcessor().getBone("head").setRotationY(-rotate * multiplier);
-        
+        float rotationYawMultiplier = (90F/360F);
+        float waterResistanceDecel = 30F;
+        //placeholder^
+
+        float setYawValue = ((rotationYawMultiplier * entity.deltaYRot) - (rotationYawMultiplier * waterResistanceDecel));
+        setYawValue = (float) Math.toRadians(setYawValue);// * customPredicate.getPartialTick();
+        System.out.println(entity.deltaYRot);
+        System.out.println(entity.prevYRot);
+
+        if (entity.isInWater()) {
+            this.getAnimationProcessor().getBone("tail").setRotationY(setYawValue);
+            this.getAnimationProcessor().getBone("tail2").setRotationY(setYawValue);
+            this.getAnimationProcessor().getBone("tail3").setRotationY(setYawValue);
+            this.getAnimationProcessor().getBone("tail4").setRotationY(setYawValue);
+            this.getAnimationProcessor().getBone("head").setRotationY(-(setYawValue));
+        }
+
         if (!entity.isInWater()) {
             body.setRotationZ(1.5708f);
         }
@@ -51,7 +56,7 @@ public class OrnithoprionModel extends AnimatedGeoModel<OrnithoprionEntity> {
             body.setRotationX(extraData.headPitch * (float)Math.PI / 200);
             body.setRotationY(extraData.netHeadYaw * (float)Math.PI / 200);
         }
-    
+
     }
 
 
